@@ -13,7 +13,7 @@ find_package(Qt6 COMPONENTS Location)
 find_package(Qt6 COMPONENTS Qml)
 
 qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
-    source/main.cpp
+    src/main.cpp
 )
 target_link_libraries(projection_map PUBLIC
     Qt::Core
@@ -25,7 +25,8 @@ target_link_libraries(projection_map PUBLIC
 
 # Resources:
 set(qml_resource_files
-    "qml/main.qml"
+    "src/gui/qml/main.qml"
+    "src/resources/Europe.svg"
 )
 
 qt6_add_resources(projection_map "qml"
