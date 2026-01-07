@@ -37,12 +37,12 @@ void GeoJsonConverter::convertFile()
         if (type == "Polygon") {
             for (const auto& polygon : geometry["coordinates"]) {
                 svgStream << "<polygon points=\"";
-                bool firstPoint = true;
                 for (const auto& point : polygon) {
-                    double x = point[0].get<double>();
-                    double y = point[1].get<double>();
+                    Projections coordinates(point[0].get<double>(), point[1].get<double>());
 
-                    svgStream << " " << (x + 180.00) << "," << (y + 90);
+                    coordinates.wgs84();
+					//coordinates.webMercator();
+                    svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
                 svgStream << "\"/>\n";
             }
@@ -51,12 +51,12 @@ void GeoJsonConverter::convertFile()
             for (const auto& multipolygon : geometry["coordinates"]) {
                 for (const auto& polygon : multipolygon) {
                     svgStream << "<polygon points=\"";
-                    bool firstPoint = true;
                     for (const auto& point : polygon) {
-                        double x = point[0].get<double>();
-                        double y = point[1].get<double>();
+                        Projections coordinates(point[0].get<double>(), point[1].get<double>());
 
-                        svgStream << " " << (x + 180.00) << "," << (y + 90);
+                        coordinates.wgs84();
+                        //coordinates.webMercator();
+                        svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
                     svgStream << " Z\"/>\n";
                 }

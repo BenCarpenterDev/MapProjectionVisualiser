@@ -8,14 +8,16 @@
 class Projections
 {
 public:
-	double originalX;
-	double originalY;
+	Projections(double x, double y);
 
 	double projectedX;
 	double projectedY;
+	void webMercator();
+	void wgs84();
 
 private:
-	void webMercator();
+	double originalX;
+	double originalY;
 };	
 
 #endif // PROJECTIONS_H
