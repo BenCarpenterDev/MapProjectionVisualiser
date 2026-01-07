@@ -28,7 +28,7 @@ void GeoJsonConverter::convertFile()
     svgStream << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << 800 << "\" height=\"" << 800 << "\">\n";
     svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n";
 
-    json geoJson = readFile("ne_110m_land.json");
+    json geoJson = readFile("resources/ne_110m_land.json");
 
     for (const auto& feature : geoJson["features"]) {
         const auto& geometry = feature["geometry"];

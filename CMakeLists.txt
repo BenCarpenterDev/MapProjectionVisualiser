@@ -45,6 +45,8 @@ set(qml_resource_files
     "src/resources/Europe.svg"
 )
 
+file(COPY ${PROJECT_SOURCE_DIR}/src/resources  DESTINATION ${PROJECT_BINARY_DIR} ) 
+
 qt6_add_resources(projection_map "qml"
     PREFIX
         "/"
