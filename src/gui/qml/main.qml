@@ -3,16 +3,25 @@ import QtQuick.Shapes
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.VectorImage
+import GeoJsonConverter
 
 Window {
     id: mainWindow
 
-    title: qsTr("Europe Test")
+    title: qsTr("World")
     width: 1920
     height: 1080
     visible: true
     visibility: Window.Maximized
     color: "white"
+
+    GeoJsonConverter {
+        id: converter
+
+       Component.onCompleted: {
+            converter.convertFile()
+        }
+    }
 
     Rectangle {
         id: bgFill
@@ -20,12 +29,13 @@ Window {
         anchors.fill: parent
     
         VectorImage {
-                scale: 1.5
-                width: mainWindow.sourceSize
-                height: mainWindow.sourceSize
-                preferredRendererType: VectorImage.CurveRenderer
-                source: "qrc:/src/resources/Europe.svg"
-                anchors.centerIn: parent
-            }
+            id: worldMap
+            scale: 1.0
+            width: mainWindow.sourceSize
+            height: mainWindow.sourceSize
+            preferredRendererType: VectorImage.CurveRenderer
+            source: converter.outputSVG()
+            anchors.centerIn: parent
+        }
     }
 }

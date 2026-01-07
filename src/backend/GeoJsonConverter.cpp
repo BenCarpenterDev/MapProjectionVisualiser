@@ -7,6 +7,10 @@
 #include <sstream>
 #include <iomanip>
 
+#include <QString>
+#include <QFileInfo>
+#include <QDebug>
+
 using json = nlohmann::json;
 
 GeoJsonConverter::GeoJsonConverter(QObject *parent) : QObject(parent)
@@ -20,7 +24,7 @@ json GeoJsonConverter::readFile(const std::string path)
     return geoJson;
 }
 
-void GeoJsonConverter::convertFile()
+Q_INVOKABLE void GeoJsonConverter::convertFile()
 {
     std::ostringstream svgStream;
     svgStream << std::fixed << std::setprecision(7);
@@ -44,7 +48,7 @@ void GeoJsonConverter::convertFile()
 					//coordinates.webMercator();
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
-                svgStream << "\"/>\n";
+                svgStream << "\" />\n";
             }
         }
         else if (type == "MultiPolygon") {
@@ -58,20 +62,21 @@ void GeoJsonConverter::convertFile()
                         //coordinates.webMercator();
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
-                    svgStream << " Z\"/>\n";
+                    svgStream << " Z\" />\n";
                 }
             }
         }
     }
 
     svgStream << "</svg>\n";
-    std::ofstream svgFile("output.svg");
+    std::ofstream svgFile("resources/output.svg");
     svgFile << svgStream.str();
     svgFile.close();
+	outputSVG();
 }
 
-int main() {
-	GeoJsonConverter converter;
-	converter.convertFile();
-    return 0;
+Q_INVOKABLE QString GeoJsonConverter::outputSVG()
+{
+    qDebug() << "file:///" + QFileInfo("resources/output.svg").absoluteFilePath();
+    return "file:///" + QFileInfo("resources/output.svg").absoluteFilePath();
 }

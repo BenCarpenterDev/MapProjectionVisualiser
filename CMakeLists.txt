@@ -14,22 +14,11 @@ FetchContent_MakeAvailable(json)
 find_package(Qt6 COMPONENTS Core Gui Qml Location REQUIRED)
 
 qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
-    src/main.cpp
-)
-
-add_executable (ConvertTest 
+    "src/main.cpp"
     "src/backend/GeoJsonConverter.cpp" 
     "src/backend/GeoJsonConverter.h"
     "src/backend/Projections.cpp"
     "src/backend/Projections.h"
-)
-
-target_link_libraries(ConvertTest PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Location
-    Qt::Qml
-    nlohmann_json::nlohmann_json
 )
 
 target_link_libraries(projection_map PUBLIC
@@ -37,6 +26,7 @@ target_link_libraries(projection_map PUBLIC
     Qt::Gui
     Qt::Location
     Qt::Qml
+    nlohmann_json::nlohmann_json
 )
 
 # Resources:

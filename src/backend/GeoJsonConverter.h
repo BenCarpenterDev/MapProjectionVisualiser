@@ -14,7 +14,8 @@ public:
 
     nlohmann::json readFile(const std::string path);
 
-    void convertFile();
+    Q_INVOKABLE void convertFile();
+    Q_INVOKABLE QString outputSVG();
 };
 
 #endif // GEOJSONCONVERTER_H
