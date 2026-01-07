@@ -1,6 +1,7 @@
 #include "GeoJsonConverter.h"
-#include <nlohmann/json.hpp>
+#include "Projections.h"
 
+#include <nlohmann/json.hpp>
 #include <iostream>
 #include <fstream>
 #include <sstream>

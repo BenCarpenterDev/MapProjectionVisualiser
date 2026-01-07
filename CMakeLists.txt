@@ -17,7 +17,12 @@ qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
     src/main.cpp
 )
 
-add_executable (ConvertTest "src/backend/GeoJsonConverter.cpp" "src/backend/GeoJsonConverter.h")
+add_executable (ConvertTest 
+    "src/backend/GeoJsonConverter.cpp" 
+    "src/backend/GeoJsonConverter.h"
+    "src/backend/Projections.cpp"
+    "src/backend/Projections.h"
+)
 
 target_link_libraries(ConvertTest PUBLIC
     Qt::Core
