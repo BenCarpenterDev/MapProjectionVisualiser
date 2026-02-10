@@ -11,7 +11,7 @@ include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
-find_package(Qt6 COMPONENTS Core Gui Qml Location REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
 
 qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
     "src/main.cpp"
@@ -24,7 +24,6 @@ qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
 target_link_libraries(projection_map PUBLIC
     Qt::Core
     Qt::Gui
-    Qt::Location
     Qt::Qml
     nlohmann_json::nlohmann_json
 )
