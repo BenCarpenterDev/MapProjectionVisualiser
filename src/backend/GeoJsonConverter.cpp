@@ -33,7 +33,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
     svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n"; 
     // should put height and width as constants
 
-    json geoJson = readFile("resources/ne_50m_land.json");
+    json geoJson = readFile("resources/ne_110m_land.json");
 
     for (const auto& feature : geoJson["features"]) {
         const auto& geometry = feature["geometry"];

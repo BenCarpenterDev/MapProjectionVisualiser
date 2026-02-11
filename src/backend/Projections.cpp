@@ -9,11 +9,17 @@ Projections::Projections(double x, double y)
 	originalRadiansY = y * (M_PI / 180);
 	projectedX = 0;
 	projectedY = 0;
+	svgBox = 800;
 }
 
-void Projections::wgs84() { // upside-down top left
-	projectedX = originalDegreesX + 180.0;// this also needs looking at, scaling and positioning
-	projectedY = originalDegreesY + 90.0;
+void Projections::normalise(double x, double y, double scale) {// there has to be a better way to this or explanation
+	// scale is just a hack random number, just so it looks presentable on the gui
+	projectedX = (x * scale) + (svgBox / 2); // centres the map to the middle
+	projectedY = ((y * scale) * -1) + (svgBox / 2); // centre the map to the middle and flips it upside down
+}
+
+void Projections::wgs84() {
+	normalise(originalDegreesX, originalDegreesY, 4);
 }
 
 void Projections::webMercator() {
@@ -32,12 +38,11 @@ void Projections::gallStereographic() { // same scaling issue as wgs84, upside-d
 	double lon = originalRadiansX;
 	double lat = originalRadiansY;
 
-	int R = 100;
+	int R = svgBox; // radius of the globe
 
 	double x = (R * lon) / sqrt(2);
 	double y = R * (1 + (sqrt(2) / 2)) * tan(lat / 2);
-	projectedX = x;
-	projectedY = y;
+	normalise(x, y, 0.25);
 }
 
 //void Projections::winkelTripel() {

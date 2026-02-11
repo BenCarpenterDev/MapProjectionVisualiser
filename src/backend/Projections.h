@@ -22,6 +22,9 @@ private:
 	double originalDegreesY;
 	double originalRadiansX;
 	double originalRadiansY;
+	double svgBox;
+
+	void normalise(double x, double y, double scale);
 };	
 
 #endif // PROJECTIONS_H
