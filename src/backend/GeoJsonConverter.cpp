@@ -30,9 +30,10 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
     svgStream << std::fixed << std::setprecision(7);
 
     svgStream << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << 800 << "\" height=\"" << 800 << "\">\n";
-    svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n";
+    svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n"; 
+    // should put height and width as constants
 
-    json geoJson = readFile("resources/ne_110m_land.json");
+    json geoJson = readFile("resources/ne_50m_land.json");
 
     for (const auto& feature : geoJson["features"]) {
         const auto& geometry = feature["geometry"];
@@ -44,8 +45,8 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
                 for (const auto& point : polygon) {
                     Projections coordinates(point[0].get<double>(), point[1].get<double>());
 
-                    coordinates.wgs84();
-					//coordinates.webMercator();
+                    //coordinates.wgs84();
+					coordinates.webMercator();
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
                 svgStream << "\" />\n";
