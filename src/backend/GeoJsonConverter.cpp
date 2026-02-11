@@ -73,8 +73,15 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                         for (const auto& point : polygon) {
                             Projections coordinates(point[0].get<double>(), point[1].get<double>());
 
-                            coordinates.wgs84();
-                            //coordinates.webMercator();
+                            if (projection == "wgs84") {
+                                coordinates.wgs84();
+                            }
+                            else if (projection == "webMercator") {
+                                coordinates.webMercator();
+                            }
+                            else if (projection == "gallStereographic") {
+                                coordinates.gallStereographic();
+                            }
                             svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                         }
                         svgStream << " Z\" />\n";
