@@ -18,8 +18,10 @@ public:
 	void wgs84();
 
 private:
-	double originalX;
-	double originalY;
+	double originalDegreesX;
+	double originalDegreesY;
+	double originalRadiansX;
+	double originalRadiansY;
 };	
 
 #endif // PROJECTIONS_H
