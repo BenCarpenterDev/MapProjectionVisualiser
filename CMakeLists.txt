@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(projection_map LANGUAGES CXX)
+project(MapProjectionVisualiser LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -13,7 +13,7 @@ FetchContent_MakeAvailable(json)
 
 find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
 
-qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
+qt_add_executable(MapProjectionVisualiser WIN32 MACOSX_BUNDLE
     "src/main.cpp"
     "src/backend/GeoJsonConverter.cpp" 
     "src/backend/GeoJsonConverter.h"
@@ -21,7 +21,7 @@ qt_add_executable(projection_map WIN32 MACOSX_BUNDLE
     "src/backend/Projections.h"
 )
 
-target_link_libraries(projection_map PUBLIC
+target_link_libraries(MapProjectionVisualiser  PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Qml
@@ -35,7 +35,7 @@ set(qml_resource_files
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources  DESTINATION ${PROJECT_BINARY_DIR} ) 
 
-qt6_add_resources(projection_map "qml"
+qt6_add_resources(MapProjectionVisualiser  "qml"
     PREFIX
         "/"
     FILES

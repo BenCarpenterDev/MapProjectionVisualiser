@@ -8,7 +8,7 @@ import GeoJsonConverter
 Window {
     id: mainWindow
 
-    title: qsTr("World")
+    title: qsTr("MapProjectionVisualiser")
     width: 1920
     height: 1080
     visible: true
