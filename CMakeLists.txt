@@ -31,7 +31,6 @@ target_link_libraries(projection_map PUBLIC
 # Resources:
 set(qml_resource_files
     "src/gui/qml/main.qml"
-    "src/resources/Europe.svg"
 )
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources  DESTINATION ${PROJECT_BINARY_DIR} ) 
