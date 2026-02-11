@@ -13,6 +13,8 @@ public:
 	double projectedX;
 	double projectedY;
 	void webMercator();
+	void gallStereographic();
+	//void winkelTripel();
 	void wgs84();
 
 private:

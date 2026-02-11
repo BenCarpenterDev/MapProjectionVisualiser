@@ -47,6 +47,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
 
                     //coordinates.wgs84();
 					coordinates.webMercator();
+                    //coordinates.gallStereographic();
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
                 svgStream << "\" />\n";
