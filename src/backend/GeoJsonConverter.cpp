@@ -37,7 +37,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
         svgStream << std::fixed << std::setprecision(7);
 
         svgStream << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << 800 << "\" height=\"" << 800 << "\">\n";
-        svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n";
+        svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"transparent\"/>\n";
         // should put height and width as constants
 
         json geoJson = readFile("resources/ne_50m_land.json");
