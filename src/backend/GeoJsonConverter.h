@@ -16,6 +16,9 @@ public:
 
     Q_INVOKABLE void convertFile();
     Q_INVOKABLE QString outputSVG();
+
+signals:
+    void svgSignal(const QString& filePath);
 };
 
 #endif // GEOJSONCONVERTER_H

@@ -77,6 +77,8 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
 
 Q_INVOKABLE QString GeoJsonConverter::outputSVG()
 {
-    qDebug() << "file:///" + QFileInfo("resources/output.svg").absoluteFilePath();
-    return "file:///" + QFileInfo("resources/output.svg").absoluteFilePath();
+    QString filePath = "file:///" + QFileInfo("resources/output.svg").absoluteFilePath();
+    qDebug() << filePath;
+    emit svgSignal(filePath);
+    return filePath;
 }

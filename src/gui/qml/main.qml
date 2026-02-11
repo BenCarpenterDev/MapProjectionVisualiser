@@ -20,6 +20,12 @@ Window {
 
        Component.onCompleted: {
             converter.convertFile()
+            converter.outputSVG()
+        }
+
+        onSvgSignal: (filePath) => {
+            console.log("SVG signal recieved with file path: " + filePath)
+            worldMap.source = filePath
         }
     }
 
@@ -34,7 +40,6 @@ Window {
             width: mainWindow.sourceSize
             height: mainWindow.sourceSize
             preferredRendererType: VectorImage.CurveRenderer
-            source: converter.outputSVG()
             anchors.centerIn: parent
         }
     }
