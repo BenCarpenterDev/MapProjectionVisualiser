@@ -12,10 +12,13 @@ class GeoJsonConverter : public QObject
 public:
     explicit GeoJsonConverter(QObject *parent = nullptr);
 
-    nlohmann::json readFile(const std::string path);
-
     Q_INVOKABLE void convertFile(const QString projection);
     Q_INVOKABLE QString outputSVG(const QString projection);
+
+private:
+    nlohmann::json readFile(const std::string path);
+
+    bool checkFileExists(const std::string path);
 
 signals:
     void svgSignal(const QString& filePath);

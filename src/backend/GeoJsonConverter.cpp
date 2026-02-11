@@ -24,64 +24,71 @@ json GeoJsonConverter::readFile(const std::string path)
     return geoJson;
 }
 
+bool GeoJsonConverter::checkFileExists(const std::string path) {
+    std::ifstream file(path);
+	return file.good();
+}
+
 Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
 {
-    std::ostringstream svgStream;
-    svgStream << std::fixed << std::setprecision(7);
+    std::string fileName = "resources/output " + projection.toStdString() + ".svg";
+	if (!checkFileExists(fileName)) { // if cached svg file doesn't exist, create it
+        std::ostringstream svgStream;
+        svgStream << std::fixed << std::setprecision(7);
 
-    svgStream << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << 800 << "\" height=\"" << 800 << "\">\n";
-    svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n"; 
-    // should put height and width as constants
+        svgStream << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << 800 << "\" height=\"" << 800 << "\">\n";
+        svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"white\"/>\n";
+        // should put height and width as constants
 
-    json geoJson = readFile("resources/ne_110m_land.json");
+        json geoJson = readFile("resources/ne_50m_land.json");
 
-    for (const auto& feature : geoJson["features"]) {
-        const auto& geometry = feature["geometry"];
-        const auto& type = geometry["type"];
+        for (const auto& feature : geoJson["features"]) {
+            const auto& geometry = feature["geometry"];
+            const auto& type = geometry["type"];
 
-        if (type == "Polygon") {
-            for (const auto& polygon : geometry["coordinates"]) {
-                svgStream << "<polygon points=\"";
-                for (const auto& point : polygon) {
-                    Projections coordinates(point[0].get<double>(), point[1].get<double>());
-
-                    if (projection == "wgs84") {
-                        coordinates.wgs84();
-                    }
-                    else if (projection == "webMercator") {
-                        coordinates.webMercator();
-                    }
-                    else if (projection == "gallStereographic") {
-                        coordinates.gallStereographic();
-					}
-                    svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
-                }
-                svgStream << "\" />\n";
-            }
-        }
-        else if (type == "MultiPolygon") {
-            for (const auto& multipolygon : geometry["coordinates"]) {
-                for (const auto& polygon : multipolygon) {
+            if (type == "Polygon") {
+                for (const auto& polygon : geometry["coordinates"]) {
                     svgStream << "<polygon points=\"";
                     for (const auto& point : polygon) {
                         Projections coordinates(point[0].get<double>(), point[1].get<double>());
 
-                        coordinates.wgs84();
-                        //coordinates.webMercator();
+                        if (projection == "wgs84") {
+                            coordinates.wgs84();
+                        }
+                        else if (projection == "webMercator") {
+                            coordinates.webMercator();
+                        }
+                        else if (projection == "gallStereographic") {
+                            coordinates.gallStereographic();
+                        }
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
-                    svgStream << " Z\" />\n";
+                    svgStream << "\" />\n";
+                }
+            }
+            else if (type == "MultiPolygon") {
+                for (const auto& multipolygon : geometry["coordinates"]) {
+                    for (const auto& polygon : multipolygon) {
+                        svgStream << "<polygon points=\"";
+                        for (const auto& point : polygon) {
+                            Projections coordinates(point[0].get<double>(), point[1].get<double>());
+
+                            coordinates.wgs84();
+                            //coordinates.webMercator();
+                            svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
+                        }
+                        svgStream << " Z\" />\n";
+                    }
                 }
             }
         }
-    }
 
-    svgStream << "</svg>\n";
-	std::string name = "resources/output " + projection.toStdString() + ".svg";
-    std::ofstream svgFile(name);
-    svgFile << svgStream.str();
-    svgFile.close();
-	outputSVG(projection);
+        svgStream << "</svg>\n";
+        std::ofstream svgFile(fileName);
+        svgFile << svgStream.str();
+        svgFile.close();
+    }
+    outputSVG(projection);
 }
 
 Q_INVOKABLE QString GeoJsonConverter::outputSVG(const QString projection)
