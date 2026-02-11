@@ -24,7 +24,7 @@ json GeoJsonConverter::readFile(const std::string path)
     return geoJson;
 }
 
-Q_INVOKABLE void GeoJsonConverter::convertFile()
+Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
 {
     std::ostringstream svgStream;
     svgStream << std::fixed << std::setprecision(7);
@@ -45,9 +45,15 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
                 for (const auto& point : polygon) {
                     Projections coordinates(point[0].get<double>(), point[1].get<double>());
 
-                    //coordinates.wgs84();
-					//coordinates.webMercator();
-                    coordinates.gallStereographic();
+                    if (projection == "wgs84") {
+                        coordinates.wgs84();
+                    }
+                    else if (projection == "webMercator") {
+                        coordinates.webMercator();
+                    }
+                    else if (projection == "gallStereographic") {
+                        coordinates.gallStereographic();
+					}
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
                 svgStream << "\" />\n";
@@ -71,15 +77,16 @@ Q_INVOKABLE void GeoJsonConverter::convertFile()
     }
 
     svgStream << "</svg>\n";
-    std::ofstream svgFile("resources/output.svg");
+	std::string name = "resources/output " + projection.toStdString() + ".svg";
+    std::ofstream svgFile(name);
     svgFile << svgStream.str();
     svgFile.close();
-	outputSVG();
+	outputSVG(projection);
 }
 
-Q_INVOKABLE QString GeoJsonConverter::outputSVG()
+Q_INVOKABLE QString GeoJsonConverter::outputSVG(const QString projection)
 {
-    QString filePath = "file:///" + QFileInfo("resources/output.svg").absoluteFilePath();
+    QString filePath = "file:///" + QFileInfo("resources/output "+projection+".svg").absoluteFilePath();
     qDebug() << filePath;
     emit svgSignal(filePath);
     return filePath;

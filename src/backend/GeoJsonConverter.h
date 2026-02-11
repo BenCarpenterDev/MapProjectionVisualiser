@@ -14,8 +14,8 @@ public:
 
     nlohmann::json readFile(const std::string path);
 
-    Q_INVOKABLE void convertFile();
-    Q_INVOKABLE QString outputSVG();
+    Q_INVOKABLE void convertFile(const QString projection);
+    Q_INVOKABLE QString outputSVG(const QString projection);
 
 signals:
     void svgSignal(const QString& filePath);

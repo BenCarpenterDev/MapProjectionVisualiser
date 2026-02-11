@@ -15,12 +15,38 @@ Window {
     visibility: Window.Maximized
     color: "white"
 
+    MenuBar {// currently not visible, needs an custom item visual to be shown
+        Menu {
+            title: ("Projections")
+            Action { 
+                text: "WGS84"
+                onTriggered: {
+                    converter.convertFile("wgs84")
+                    console.log("WGS84 projection selected")
+                }
+            }
+            Action { 
+                text: "Web Mercator"
+                onTriggered: {
+                    converter.convertFile("webMercator")
+                    console.log("Web Mercator projection selected")
+                }
+            }
+            Action { 
+                text: "Gall Stereographic"
+                onTriggered: {
+                    converter.convertFile("gallStereographic")
+                    console.log("Gall Stereographic projection selected")
+                }
+            }
+        }
+    }
+
     GeoJsonConverter {
         id: converter
 
        Component.onCompleted: {
-            converter.convertFile()
-            converter.outputSVG()
+            converter.convertFile("webMercator")
         }
 
         onSvgSignal: (filePath) => {
