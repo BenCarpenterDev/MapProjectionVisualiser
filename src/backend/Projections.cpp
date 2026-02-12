@@ -32,8 +32,8 @@ void Projections::webMercator() {
 	double lat = originalRadiansY;
 	double x = (1 / (2 * (M_PI))) * (M_PI + lon);
 	double y = (1/(2*(M_PI))*(M_PI - log(tan((M_PI / 4) + (lat / 2)))));
-	projectedX = x * 800;
-	projectedY = y * 800;
+	projectedX = x * svgBox;
+	projectedY = y * svgBox;
 	// needs to be multiplied by same number as svg height and width, to scale properly. Should be a constant
 }
 
