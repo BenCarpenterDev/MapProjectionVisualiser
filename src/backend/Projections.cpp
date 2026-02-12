@@ -16,11 +16,14 @@ void Projections::normalise(double x, double y, double scale) {// there has to b
 	// different scale may be needed for different projections, different bounds may be used
 	projectedX = (x * scale) + (svgBox / 2); // centres the map to the middle
 	projectedY = ((y * scale) * -1) + (svgBox / 2); // centre the map to the middle and flips it upside down
+
+	// 2 options for scale, have the projection width fit (/360) the box or its height (/180) fit the box
 }
 
 void Projections::wgs84() {
-	normalise(originalDegreesX, originalDegreesY, svgBox/180);// the wgs84 coordinate system has bounds of
-	// -180 to 180 and -90 to 90, so scaling by svgBox/180 means that the map will fit within the svg box.
+	// works in degrees
+	normalise(originalDegreesX, originalDegreesY, svgBox/360);// the wgs84 coordinate system has bounds of
+	// -180 to 180 and -90 to 90, so scaling by svgBox/360 means that the map will fit within the svg box.
 }
 
 void Projections::webMercator() {
@@ -39,11 +42,13 @@ void Projections::gallStereographic() { // same scaling issue as wgs84, upside-d
 	double lon = originalRadiansX;
 	double lat = originalRadiansY;
 
-	int R = svgBox; // radius of the globe
+	int R = 180;//svgBox; // radius of the globe
 
 	double x = (R * lon) / sqrt(2);
 	double y = R * (1 + (sqrt(2) / 2)) * tan(lat / 2);
-	normalise(x, y, 0.25);
+
+	normalise(x, y, 1); // this projection already is being multiplied by the radius, so scale is 1, 
+	//but it still needs to be normalised to fit in the svg box and flipped upside down
 }
 
 //void Projections::winkelTripel() {
