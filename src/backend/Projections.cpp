@@ -13,13 +13,14 @@ Projections::Projections(double x, double y)
 }
 
 void Projections::normalise(double x, double y, double scale) {// there has to be a better way to this or explanation
-	// scale is just a hack random number, just so it looks presentable on the gui
+	// different scale may be needed for different projections, different bounds may be used
 	projectedX = (x * scale) + (svgBox / 2); // centres the map to the middle
 	projectedY = ((y * scale) * -1) + (svgBox / 2); // centre the map to the middle and flips it upside down
 }
 
 void Projections::wgs84() {
-	normalise(originalDegreesX, originalDegreesY, 4);
+	normalise(originalDegreesX, originalDegreesY, svgBox/180);// the wgs84 coordinate system has bounds of
+	// -180 to 180 and -90 to 90, so scaling by svgBox/180 means that the map will fit within the svg box.
 }
 
 void Projections::webMercator() {
