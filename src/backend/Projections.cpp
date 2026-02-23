@@ -21,28 +21,23 @@ void Projections::normalise(double x, double y, double scale) {// there has to b
 }
 
 void Projections::wgs84() {
-	// works in degrees
-	normalise(originalDegreesX, originalDegreesY, svgBox/360);// the wgs84 coordinate system has bounds of
-	// -180 to 180 and -90 to 90, so scaling by svgBox/360 means that the map will fit within the svg box.
+	normalise(originalDegreesX, originalDegreesY, svgBox/360);
 }
 
 void Projections::webMercator() {
-	// works in radians
 	double lon = originalRadiansX;
 	double lat = originalRadiansY;
 	double x = (1 / (2 * (M_PI))) * (M_PI + lon);
 	double y = (1/(2*(M_PI))*(M_PI - log(tan((M_PI / 4) + (lat / 2)))));
 	projectedX = x * svgBox;
 	projectedY = y * svgBox;
-	// needs to be multiplied by same number as svg height and width, to scale properly. Should be a constant
 }
 
-void Projections::gallStereographic() { // same scaling issue as wgs84, upside-down top left
-	// works in Radians
+void Projections::gallStereographic() {
 	double lon = originalRadiansX;
 	double lat = originalRadiansY;
 
-	int R = 180;//svgBox; // radius of the globe
+	int R = 180;// radius of the globe
 
 	double x = (R * lon) / sqrt(2);
 	double y = R * (1 + (sqrt(2) / 2)) * tan(lat / 2);

@@ -19,3 +19,4 @@ CMakePresets.json
 # Add this line
 out/
 build/
+docs/
