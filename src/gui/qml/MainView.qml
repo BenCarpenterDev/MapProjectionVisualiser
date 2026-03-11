@@ -49,31 +49,14 @@ Window {
             opacity: 0.0
         }
 
-        Rectangle {
-            id: gear
-            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            anchors.rightMargin: 30
-            anchors.bottomMargin: 30
-            radius: 8
-            width: 44
-            height: width
-            color: Qt.rgba(0, 0, 0, hoverHandler.hovered ? 0.21 : 0.07)
-
-            HoverHandler {
-                id: hoverHandler
-            }
-
-            TapHandler {
-                onTapped: (eventPoint, button) => {
-                  infoPanel.stateVisible = !infoPanel.stateVisible
-                }
-            }
-        }
+        InfoButton{}
 
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.NoButton
+
+            drag.target: worldMap
+            drag.axis: Drag.XAndYAxis
             
             onWheel: (wheel) => {
                 const zoomFactor = 1.1
