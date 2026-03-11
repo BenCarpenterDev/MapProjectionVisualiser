@@ -8,7 +8,6 @@
 
 /**
 * @brief Converts JSON vector map data to SVG format.
-*
 */
 class GeoJsonConverter : public QObject
 {

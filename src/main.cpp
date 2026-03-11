@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     qmlRegisterType<GeoJsonConverter>("GeoJsonConverter", 1, 0, "GeoJsonConverter");
 
-    engine.load(QUrl(QStringLiteral("qrc:/src/gui/qml/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/src/gui/qml/MainView.qml")));
 
     return app.exec();
 }

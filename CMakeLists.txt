@@ -21,6 +21,11 @@ qt_add_executable(MapProjectionVisualiser WIN32 MACOSX_BUNDLE
     "src/backend/Projections.h"
 )
 
+set_target_properties(MapProjectionVisualiser PROPERTIES
+    WIN32_EXECUTABLE TRUE
+    MACOSX_BUNDLE TRUE
+)
+
 target_link_libraries(MapProjectionVisualiser  PUBLIC
     Qt::Core
     Qt::Gui
@@ -30,7 +35,9 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
 
 # Resources:
 set(qml_resource_files
-    "src/gui/qml/main.qml"
+    "src/gui/qml/MainView.qml"
+    "src/gui/qml/OptionsButtons.qml"
+    "src/gui/qml/OptionsView.qml"
 )
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources  DESTINATION ${PROJECT_BINARY_DIR} ) 
@@ -40,4 +47,10 @@ qt6_add_resources(MapProjectionVisualiser  "qml"
         "/"
     FILES
         ${qml_resource_files}
+)
+
+install(TARGETS MapProjectionVisualiser
+    RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
+    BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
+    LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
 )

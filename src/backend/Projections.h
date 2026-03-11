@@ -51,7 +51,6 @@ public:
 	 *
 	 */
 	void gallStereographic();
-	//void winkelTripel();
 
 private:
 	/**
