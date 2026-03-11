@@ -9,12 +9,13 @@ Rectangle {
     anchors.leftMargin: 30
     anchors.topMargin: 30
     radius: 8
-    width: 120
+    width: 140
     height: width
     color: Qt.rgba(0, 0, 0, 0.21)
 
     ColumnLayout {
         anchors.centerIn: parent
+
         OptionsButtons {
             text: "WGS84"
             onClicked: {

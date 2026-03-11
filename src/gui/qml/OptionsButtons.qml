@@ -15,7 +15,7 @@ Button {
     }
 
     background: Rectangle {
-        implicitWidth: 110
+        implicitWidth: 120
         implicitHeight: 10
         opacity: enabled ? 1 : 0.3
         border.color: control.down ? "#33658a" : "#2f4858"
