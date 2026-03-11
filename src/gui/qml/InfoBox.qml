@@ -4,6 +4,8 @@ import QtQuick.Layouts
 
 Rectangle {
     id: optionsPanel
+    property bool stateVisible: false
+
     anchors.top: parent.top
     anchors.right: parent.right
     anchors.rightMargin: 30
@@ -31,5 +33,17 @@ Rectangle {
         font.family: "Helvetica"
         font.pointSize: 18
         color: "red"
+    }
+
+    states: [
+        State { when: stateVisible;
+            PropertyChanges {   target: optionsPanel; opacity: 1.0    }
+        },
+        State { when: !stateVisible;
+            PropertyChanges {   target: optionsPanel; opacity: 0.0    }
+        }
+    ]
+    transitions: Transition {
+        NumberAnimation { property: "opacity"; duration: 500}
     }
 }

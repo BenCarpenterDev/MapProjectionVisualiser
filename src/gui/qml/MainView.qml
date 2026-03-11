@@ -45,8 +45,8 @@ Window {
         OptionsView{}
         
         InfoBox{
-             id: infoPanel
-             visible: false
+            id: infoPanel
+            opacity: 0.0
         }
 
         Rectangle {
@@ -66,7 +66,7 @@ Window {
 
             TapHandler {
                 onTapped: (eventPoint, button) => {
-                  infoPanel.visible = !infoPanel.visible
+                  infoPanel.stateVisible = !infoPanel.stateVisible
                 }
             }
         }
