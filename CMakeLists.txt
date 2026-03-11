@@ -38,6 +38,7 @@ set(qml_resource_files
     "src/gui/qml/MainView.qml"
     "src/gui/qml/OptionsButtons.qml"
     "src/gui/qml/OptionsView.qml"
+    "src/gui/qml/InfoBox.qml"
 )
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources  DESTINATION ${PROJECT_BINARY_DIR} ) 

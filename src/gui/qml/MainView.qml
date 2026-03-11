@@ -43,6 +43,33 @@ Window {
         }
 
         OptionsView{}
+        
+        InfoBox{
+             id: infoPanel
+             visible: false
+        }
+
+        Rectangle {
+            id: gear
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.rightMargin: 30
+            anchors.bottomMargin: 30
+            radius: 8
+            width: 44
+            height: width
+            color: Qt.rgba(0, 0, 0, hoverHandler.hovered ? 0.21 : 0.07)
+
+            HoverHandler {
+                id: hoverHandler
+            }
+
+            TapHandler {
+                onTapped: (eventPoint, button) => {
+                  infoPanel.visible = !infoPanel.visible
+                }
+            }
+        }
 
         MouseArea {
             anchors.fill: parent
