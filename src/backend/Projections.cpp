@@ -1,6 +1,10 @@
 #include "Projections.h"
 #include <cmath>
 
+constexpr int SVGBOX = 800;
+constexpr int R = 180;
+constexpr double M_PI = 3.14159265358979323846;
+
 Projections::Projections(double x, double y)
 {
 	originalDegreesX = x;
@@ -9,19 +13,33 @@ Projections::Projections(double x, double y)
 	originalRadiansY = y * (M_PI / 180);
 	projectedX = 0;
 	projectedY = 0;
-	svgBox = 800;
+}
+
+void Projections::applyProjection(const QString projection) {
+	if (projection == "wgs84") {
+		wgs84();
+	}
+	else if (projection == "webMercator") {
+		webMercator();
+	}
+	else if (projection == "gallStereographic") {
+		gallStereographic();
+	}
+	else if (projection == "winkelTripel") {
+		winkelTripel();
+	}
 }
 
 void Projections::normalise(double x, double y, double scale) {// there has to be a better way to this or explanation
 	// different scale may be needed for different projections, different bounds may be used
-	projectedX = (x * scale) + (svgBox / 2); // centres the map to the middle
-	projectedY = ((y * scale) * -1) + (svgBox / 2); // centre the map to the middle and flips it upside down
+	projectedX = (x * scale) + (SVGBOX / 2); // centres the map to the middle
+	projectedY = ((y * scale) * -1) + (SVGBOX / 2); // centre the map to the middle and flips it upside down
 
 	// 2 options for scale, have the projection width fit (/360) the box or its height (/180) fit the box
 }
 
 void Projections::wgs84() {
-	normalise(originalDegreesX, originalDegreesY, svgBox/360);
+	normalise(originalDegreesX, originalDegreesY, SVGBOX /360);
 }
 
 void Projections::webMercator() {
@@ -29,15 +47,13 @@ void Projections::webMercator() {
 	double lat = originalRadiansY;
 	double x = (1 / (2 * (M_PI))) * (M_PI + lon);
 	double y = (1/(2*(M_PI))*(M_PI - log(tan((M_PI / 4) + (lat / 2)))));
-	projectedX = x * svgBox;
-	projectedY = y * svgBox;
+	projectedX = x * SVGBOX;
+	projectedY = y * SVGBOX;
 }
 
 void Projections::gallStereographic() {
 	double lon = originalRadiansX;
 	double lat = originalRadiansY;
-
-	int R = 180;// radius of the globe
 
 	double x = (R * lon) / sqrt(2);
 	double y = R * (1 + (sqrt(2) / 2)) * tan(lat / 2);
@@ -57,5 +73,13 @@ void Projections::winkelTripel(){
 	double x = 0.5 * ((lon * cos(parallel)) + ((2*cos(lat)*sin(lon/2)/sincA)));
 	double y = 0.5 * (lat + (sin(lat) / sincA));
 
-	normalise(x, y, 180);
+	normalise(x, y, R);
+}
+
+void Projections::equirectangular(){
+	double lon = originalRadiansX;
+	double lat = originalRadiansY;
+
+	projectedX = R * lon * cos(0);
+	projectedY = R * lat;
 }

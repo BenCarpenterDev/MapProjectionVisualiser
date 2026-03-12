@@ -51,19 +51,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                     svgStream << "<polygon points=\"";
                     for (const auto& point : polygon) {
                         Projections coordinates(point[0].get<double>(), point[1].get<double>());
-
-                        if (projection == "wgs84") {
-                            coordinates.wgs84();
-                        }
-                        else if (projection == "webMercator") {
-                            coordinates.webMercator();
-                        }
-                        else if (projection == "gallStereographic") {
-                            coordinates.gallStereographic();
-                        }
-                        else if (projection == "winkelTripel") {
-                            coordinates.winkelTripel();
-                        }
+						coordinates.applyProjection(projection);
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
                     svgStream << "\" fill=\"#4CAF50\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
@@ -75,19 +63,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                         svgStream << "<polygon points=\"";
                         for (const auto& point : polygon) {
                             Projections coordinates(point[0].get<double>(), point[1].get<double>());
-
-                            if (projection == "wgs84") {
-                                coordinates.wgs84();
-                            }
-                            else if (projection == "webMercator") {
-                                coordinates.webMercator();
-                            }
-                            else if (projection == "gallStereographic") {
-                                coordinates.gallStereographic();
-                            }
-                            else if (projection == "winkelTripel") {
-                                coordinates.winkelTripel();
-                            }
+                            coordinates.applyProjection(projection);
                             svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                         }
                         svgStream << "\" fill=\"#4CAF50\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";

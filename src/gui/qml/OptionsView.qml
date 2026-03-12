@@ -20,28 +20,30 @@ Rectangle {
             text: "WGS84"
             onClicked: {
                 converter.convertFile("wgs84")
-                console.log("WGS84 projection selected")
             }
         }
         OptionsButtons {
             text: "Web Mercator"
             onClicked: {
                 converter.convertFile("webMercator")
-                console.log("Web Mercator projection selected")
             }
         }
         OptionsButtons {
             text: "Gall Stereographic"
             onClicked: {
                 converter.convertFile("gallStereographic")
-                console.log("Gall Stereographic projection selected")
             }
         }
         OptionsButtons {
             text: "Winkel Tripel"
             onClicked: {
                 converter.convertFile("winkelTripel")
-                console.log("Winkel Tripel projection selected")
+            }
+        }
+        OptionsButtons {
+            text: "Equirectangular"
+            onClicked: {
+                converter.convertFile("equirectangular")
             }
         }
     }

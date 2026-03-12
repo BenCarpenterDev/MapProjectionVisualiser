@@ -1,9 +1,7 @@
 #ifndef PROJECTIONS_H
 #define PROJECTIONS_H
 
-#ifndef M_PI
-#    define M_PI 3.14159265358979323846
-#endif
+#include <QString>
 
 /**
 * @brief Stores current coordinates and applies projection algorithms to them.
@@ -19,6 +17,9 @@ public:
 	* @param y original y coordinate
 	*/
 	Projections(double x, double y);
+
+	void applyProjection(const QString projection);
+
 	/**
 	* @brief Currently projected x coordinate
 	*/
@@ -27,11 +28,42 @@ public:
 	* @brief Currently projected y coordinate
 	*/
 	double projectedY;
+
+private:
+	/**
+	* @brief Original x coordinate from the JSON file, in degrees
+	*/
+	double originalDegreesX;
+	/**
+	* @brief Original y coordinate from the JSON file, in degrees
+	*/
+	double originalDegreesY;
+	/**
+	* @brief Original x coordinate from the JSON file, in radians
+	*/
+	double originalRadiansX;
+	/**
+	* @brief Original y coordinate from the JSON file, in radians
+	*/
+	double originalRadiansY;
+
+	/**
+	 * @brief Normalises the projected coordinates to fit within the SVG box
+	 * 
+	 * This centres the map and flips it upside down
+	 *
+	 * @param x The x coordinate after projection
+	 * @param y The y coordinate after projection
+	 * @param scale The scale factor to be applied to the projected coordinates, which may vary for different projections
+	 *
+	 */
+	void normalise(double x, double y, double scale);
+
 	/**
 	 * @brief The Web Mercator projection
 	 *
 	 * Applies web mercator projection algorithm, works in radians
-	 * Additonal Note: Needs to be multiplied by same number as svg height and width, to scale properly. 
+	 * Additonal Note: Needs to be multiplied by same number as svg height and width, to scale properly.
 	 *
 	 */
 	void webMercator();
@@ -61,39 +93,7 @@ public:
 	 */
 	void winkelTripel();
 
-private:
-	/**
-	* @brief Original x coordinate from the JSON file, in degrees
-	*/
-	double originalDegreesX;
-	/**
-	* @brief Original y coordinate from the JSON file, in degrees
-	*/
-	double originalDegreesY;
-	/**
-	* @brief Original x coordinate from the JSON file, in radians
-	*/
-	double originalRadiansX;
-	/**
-	* @brief Original y coordinate from the JSON file, in radians
-	*/
-	double originalRadiansY;
-	/**
-	* @brief Width and height of the SVG box, used for normalisation of projected coordinates to fit within the box.
-	*/
-	double svgBox;
-
-	/**
-	 * @brief Normalises the projected coordinates to fit within the SVG box
-	 * 
-	 * This centres the map and flips it upside down
-	 *
-	 * @param x The x coordinate after projection
-	 * @param y The y coordinate after projection
-	 * @param scale The scale factor to be applied to the projected coordinates, which may vary for different projections
-	 *
-	 */
-	void normalise(double x, double y, double scale);
+	void equirectangular();
 };	
 
 #endif // PROJECTIONS_H
