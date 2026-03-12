@@ -61,6 +61,9 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                         else if (projection == "gallStereographic") {
                             coordinates.gallStereographic();
                         }
+                        else if (projection == "winkelTripel") {
+                            coordinates.winkelTripel();
+                        }
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
                     svgStream << "\" fill=\"#4CAF50\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
@@ -81,6 +84,9 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                             }
                             else if (projection == "gallStereographic") {
                                 coordinates.gallStereographic();
+                            }
+                            else if (projection == "winkelTripel") {
+                                coordinates.winkelTripel();
                             }
                             svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                         }

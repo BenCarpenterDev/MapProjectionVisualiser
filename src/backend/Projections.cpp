@@ -45,3 +45,17 @@ void Projections::gallStereographic() {
 	normalise(x, y, 1); // this projection already is being multiplied by the radius, so scale is 1, 
 	//but it still needs to be normalised to fit in the svg box and flipped upside down
 }
+
+void Projections::winkelTripel(){
+	double lon = originalRadiansX;
+	double lat = originalRadiansY;
+
+	double a = acos(cos(lat) * cos(lon / 2));
+	double sincA = sin(a) / a;
+	double parallel = acos(2 / M_PI);
+
+	double x = 0.5 * ((lon * cos(parallel)) + ((2*cos(lat)*sin(lon/2)/sincA)));
+	double y = 0.5 * (lat + (sin(lat) / sincA));
+
+	normalise(x, y, 180);
+}

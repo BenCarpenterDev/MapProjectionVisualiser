@@ -52,6 +52,15 @@ public:
 	 */
 	void gallStereographic();
 
+	/**
+	 * @brief The Winkel Tripel projection
+	 *
+	 * Applies winkel tripel projection algorithm, works in radians
+	 * Additonal Note: Needs to be multiplied by globe radius to scale properly.
+	 *
+	 */
+	void winkelTripel();
+
 private:
 	/**
 	* @brief Original x coordinate from the JSON file, in degrees

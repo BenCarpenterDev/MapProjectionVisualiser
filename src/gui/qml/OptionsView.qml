@@ -37,5 +37,12 @@ Rectangle {
                 console.log("Gall Stereographic projection selected")
             }
         }
+        OptionsButtons {
+            text: "Winkel Tripel"
+            onClicked: {
+                converter.convertFile("winkelTripel")
+                console.log("Winkel Tripel projection selected")
+            }
+        }
     }
 }
