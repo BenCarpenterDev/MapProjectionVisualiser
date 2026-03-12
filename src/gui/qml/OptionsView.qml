@@ -10,7 +10,7 @@ Rectangle {
     anchors.topMargin: 30
     radius: 8
     width: 140
-    height: width
+    height: 180
     color: Qt.rgba(0, 0, 0, 0.21)
 
     ColumnLayout {
@@ -41,9 +41,9 @@ Rectangle {
             }
         }
         OptionsButtons {
-            text: "Equirectangular"
+            text: "Gall Peters"
             onClicked: {
-                converter.convertFile("equirectangular")
+                converter.convertFile("gallPeters")
             }
         }
     }

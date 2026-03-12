@@ -93,7 +93,9 @@ private:
 	 */
 	void winkelTripel();
 
-	void equirectangular();
+	void gallPeters();
+
+	
 };	
 
 #endif // PROJECTIONS_H

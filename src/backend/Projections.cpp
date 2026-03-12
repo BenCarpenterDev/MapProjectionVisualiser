@@ -28,6 +28,9 @@ void Projections::applyProjection(const QString projection) {
 	else if (projection == "winkelTripel") {
 		winkelTripel();
 	}
+	else if (projection == "gallPeters") {
+		gallPeters();
+	}
 }
 
 void Projections::normalise(double x, double y, double scale) {// there has to be a better way to this or explanation
@@ -76,10 +79,12 @@ void Projections::winkelTripel(){
 	normalise(x, y, R);
 }
 
-void Projections::equirectangular(){
+void Projections::gallPeters() {
 	double lon = originalRadiansX;
 	double lat = originalRadiansY;
 
-	projectedX = R * lon * cos(0);
-	projectedY = R * lat;
+	double x = R * lon;
+	double y = 2 * R * sin(lat);
+
+	normalise(x, y, 1);
 }
