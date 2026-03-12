@@ -97,6 +97,8 @@ private:
 
 	void sinusoidal();
 
+	void azimuthalEquidistant();
+
 	
 };	
 

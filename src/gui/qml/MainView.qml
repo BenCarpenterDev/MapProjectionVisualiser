@@ -65,7 +65,7 @@ Window {
                 if (wheel.angleDelta.y > 0) {
                     worldMap.scale = Math.min(oldScale * zoomFactor, 10.0)
                 } else {
-                    worldMap.scale = Math.max(oldScale / zoomFactor, 1.0)
+                    worldMap.scale = Math.max(oldScale / zoomFactor, 0.5)
                 }
             }
         }

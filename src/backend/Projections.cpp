@@ -34,6 +34,9 @@ void Projections::applyProjection(const QString projection) {
 	else if (projection == "sinusoidal") {
 		sinusoidal();
 	}
+	else if (projection == "azimuthalEquidistant") {
+		azimuthalEquidistant();
+	}
 }
 
 void Projections::normalise(double x, double y, double scale) {// there has to be a better way to this or explanation
@@ -99,4 +102,16 @@ void Projections::sinusoidal() {
 	double x = lon * cos(lat);
 
 	normalise(x, lat, R);
+}
+
+void Projections::azimuthalEquidistant() {
+	double lon = originalRadiansX;
+	double lat = originalRadiansY;
+
+	double p = R * ((M_PI / 2) - lat);
+
+	double x = p * sin(lon);
+	double y = -p * cos(lon);
+
+	normalise(x, y, 1);
 }

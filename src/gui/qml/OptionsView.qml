@@ -10,7 +10,7 @@ Rectangle {
     anchors.topMargin: 30
     radius: 8
     width: 140
-    height: 210
+    height: 240
     color: Qt.rgba(0, 0, 0, 0.21)
 
     ColumnLayout {
@@ -50,6 +50,12 @@ Rectangle {
             text: "Sinusoidal"
             onClicked: {
                 converter.convertFile("sinusoidal")
+            }
+        }
+        OptionsButtons {
+            text: "Azimuthal Equidistant"
+            onClicked: {
+                converter.convertFile("azimuthalEquidistant")
             }
         }
     }
