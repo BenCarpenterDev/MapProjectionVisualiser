@@ -40,9 +40,10 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
         svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"transparent\"/>\n";
         // should put height and width as constants
 
-        json geoJson = readFile("resources/ne_110m_land.json");
+        json land = readFile("resources/ne_110m_land.json");
+		json boundaries = readFile("resources/ne_110m_admin_0_boundary_lines_land.json");
 
-        for (const auto& feature : geoJson["features"]) {
+        for (const auto& feature : land["features"]) {
             const auto& geometry = feature["geometry"];
             const auto& type = geometry["type"];
 
@@ -68,6 +69,33 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                         }
                         svgStream << "\" fill=\"#4CAF50\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
                     }
+                }
+            }
+        }
+        for (const auto& feature : boundaries["features"]) {
+            const auto& geometry = feature["geometry"];
+            const auto& type = geometry["type"];
+
+            if (type == "LineString") {
+                svgStream << "<polyline points=\"";
+                for (const auto& point : geometry["coordinates"]) {
+
+                    Projections coordinates(point[0].get<double>(), point[1].get<double>());
+                    coordinates.applyProjection(projection);
+                    svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
+                }
+                svgStream << "\" fill=\"none\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
+            }
+            else if (type == "MultiLineString") {
+                for (const auto& multiline : geometry["coordinates"]) {
+                    svgStream << "<polyline points=\"";
+                    for (const auto& point : multiline) {
+
+                        Projections coordinates(point[0].get<double>(), point[1].get<double>());
+                        coordinates.applyProjection(projection);
+                        svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
+                    }
+                    svgStream << "\" fill=\"none\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
                 }
             }
         }
