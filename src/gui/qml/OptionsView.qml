@@ -10,7 +10,7 @@ Rectangle {
     anchors.topMargin: 30
     radius: 8
     width: 140
-    height: 180
+    height: 210
     color: Qt.rgba(0, 0, 0, 0.21)
 
     ColumnLayout {
@@ -44,6 +44,12 @@ Rectangle {
             text: "Gall Peters"
             onClicked: {
                 converter.convertFile("gallPeters")
+            }
+        }
+        OptionsButtons {
+            text: "Sinusoidal"
+            onClicked: {
+                converter.convertFile("sinusoidal")
             }
         }
     }

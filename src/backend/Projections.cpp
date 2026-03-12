@@ -31,6 +31,9 @@ void Projections::applyProjection(const QString projection) {
 	else if (projection == "gallPeters") {
 		gallPeters();
 	}
+	else if (projection == "sinusoidal") {
+		sinusoidal();
+	}
 }
 
 void Projections::normalise(double x, double y, double scale) {// there has to be a better way to this or explanation
@@ -87,4 +90,13 @@ void Projections::gallPeters() {
 	double y = 2 * R * sin(lat);
 
 	normalise(x, y, 1);
+}
+
+void Projections::sinusoidal() {
+	double lon = originalRadiansX;
+	double lat = originalRadiansY;
+
+	double x = lon * cos(lat);
+
+	normalise(x, lat, R);
 }

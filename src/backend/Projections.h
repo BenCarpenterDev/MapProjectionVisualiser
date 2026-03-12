@@ -95,6 +95,8 @@ private:
 
 	void gallPeters();
 
+	void sinusoidal();
+
 	
 };	
 
