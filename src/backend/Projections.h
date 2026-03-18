@@ -93,10 +93,28 @@ private:
 	 */
 	void winkelTripel();
 
+	/**
+	 * @brief The Gall Peters projection
+	 *
+	 * Applies gall peters projection algorithm, works in radians
+	 *
+	 */
 	void gallPeters();
 
+	/**
+	 * @brief The Gall Peters projection
+	 *
+	 * Applies gall peters projection algorithm, works in radians
+	 *
+	 */
 	void sinusoidal();
 
+	/**
+	 * @brief The Azimuthal Equidistant projection
+	 *
+	 * Applies azimuthal equidistant projection algorithm, works in radians
+	 *
+	 */
 	void azimuthalEquidistant();
 
 	
