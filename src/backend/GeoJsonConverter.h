@@ -71,6 +71,8 @@ signals:
     *
     */
     void svgSignal(const QString& filePath);
+
+    void projectionChanged(const QString& projection);
 };
 
 #endif // GEOJSONCONVERTER_H

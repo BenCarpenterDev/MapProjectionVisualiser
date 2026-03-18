@@ -113,5 +113,6 @@ Q_INVOKABLE QString GeoJsonConverter::outputSVG(const QString projection)
     QString filePath = "file:///" + QFileInfo("resources/output"+projection+".svg").absoluteFilePath();
     qDebug() << filePath;
     emit svgSignal(filePath);
+	emit projectionChanged(projection);
     return filePath;
 }

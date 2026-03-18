@@ -25,6 +25,10 @@ Window {
             console.log("SVG signal recieved with file path: " + filePath)
             worldMap.source = filePath
         }
+
+        onProjectionChanged: (projection) => {
+            infoPanel.contentProjection = projection
+        }
     }
 
     Rectangle {

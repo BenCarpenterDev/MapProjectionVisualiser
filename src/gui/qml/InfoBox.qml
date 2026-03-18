@@ -3,8 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 Rectangle {
-    id: optionsPanel
+    id: infoPanel
     property bool stateVisible: false
+    property string contentProjection
 
     anchors.top: parent.top
     anchors.right: parent.right
@@ -15,34 +16,14 @@ Rectangle {
     height: width*2
     color: Qt.rgba(0, 0, 0, 0.21)
 
-    Text{
-        id: infoTitle
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.topMargin: 20
-        text: "Placeholder Title"
-        font.family: "Helvetica"
-        font.pointSize: 20
-        color: "white"
-    }
-
-    Text {
-        id: infoText
-        anchors.centerIn: parent
-        width: parent.width - 20
-        wrapMode: Text.WordWrap
-        text: "Placeholder Info Placeholder Info Placeholder Info Placeholder Info Placeholder Info"
-        font.family: "Helvetica"
-        font.pointSize: 14
-        color: "white"
-    }
+    InfoContent{}
 
     states: [
         State { when: stateVisible;
-            PropertyChanges {   target: optionsPanel; opacity: 1.0    }
+            PropertyChanges {   target: infoPanel; opacity: 1.0    }
         },
         State { when: !stateVisible;
-            PropertyChanges {   target: optionsPanel; opacity: 0.0    }
+            PropertyChanges {   target: infoPanel; opacity: 0.0    }
         }
     ]
 
