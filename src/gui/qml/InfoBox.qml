@@ -12,7 +12,7 @@ Rectangle {
     anchors.rightMargin: 30
     anchors.topMargin: 30
     radius: 8
-    width: 240
+    width: 300
     height: width*2
     color: Qt.rgba(0, 0, 0, 0.21)
 
