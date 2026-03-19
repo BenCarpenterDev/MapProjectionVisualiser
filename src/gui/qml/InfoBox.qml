@@ -30,4 +30,10 @@ Rectangle {
     transitions: Transition {
         NumberAnimation { property: "opacity"; duration: 500}
     }
+    
+    TapHandler {
+        onTapped: (eventPoint, button) => {
+            infoPanel.stateVisible = !infoPanel.stateVisible
+        }
+    }
 }

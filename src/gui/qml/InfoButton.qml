@@ -12,6 +12,15 @@ Rectangle {
     height: width
     color: Qt.rgba(0, 0, 0, hoverHandler.hovered ? 0.21 : 0.07)
 
+    Text {
+        anchors.centerIn: parent
+        text: 'i'
+        font.family: "Helvetica"
+        font.pointSize: 20
+        font.bold: true
+        color: "white"
+    }
+
     HoverHandler {
         id: hoverHandler
     }
