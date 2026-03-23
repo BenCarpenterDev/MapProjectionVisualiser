@@ -15,7 +15,7 @@ Projections::Projections(double x, double y)
 	projectedY = 0;
 }
 
-void Projections::applyProjection(const QString projection) {
+void Projections::applyProjection(const std::string projection) {
 	if (projection == "wgs84") {
 		wgs84();
 	}

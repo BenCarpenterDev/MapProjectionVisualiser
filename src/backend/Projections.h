@@ -1,7 +1,7 @@
 #ifndef PROJECTIONS_H
 #define PROJECTIONS_H
 
-#include <QString>
+#include <string>
 
 /**
 * @brief Stores current coordinates and applies projection algorithms to them.
@@ -18,7 +18,12 @@ public:
 	*/
 	Projections(double x, double y);
 
-	void applyProjection(const QString projection);
+	/**
+	* @brief Method for applying a chosen projection and running the related algorithm.
+	*
+	* @param projection String for the chosen projection.
+	*/
+	void applyProjection(const std::string projection);
 
 	/**
 	* @brief Currently projected x coordinate

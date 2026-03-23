@@ -16,7 +16,9 @@ Rectangle {
     height: width*2
     color: Qt.rgba(0, 0, 0, 0.21)
 
-    InfoContent{}
+    InfoContent{
+        id: content
+    }
 
     states: [
         State { when: stateVisible;

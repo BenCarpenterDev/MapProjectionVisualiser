@@ -30,7 +30,7 @@ Rectangle {
             id: projOne
             text: "WGS84"
             onClicked: {
-                converter.convertFile("wgs84")
+                converter.selectProjection("wgs84")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -39,7 +39,7 @@ Rectangle {
             id: projTwo
             text: "Web Mercator"
             onClicked: {
-                converter.convertFile("webMercator")
+                converter.selectProjection("webMercator")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -48,7 +48,7 @@ Rectangle {
             id: projThree
             text: "Gall Stereographic"
             onClicked: {
-                converter.convertFile("gallStereographic")
+                converter.selectProjection("gallStereographic")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -57,7 +57,7 @@ Rectangle {
             id: projFour
             text: "Winkel Tripel"
             onClicked: {
-                converter.convertFile("winkelTripel")
+                converter.selectProjection("winkelTripel")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -66,7 +66,7 @@ Rectangle {
             id: projFive
             text: "Gall Peters"
             onClicked: {
-                converter.convertFile("gallPeters")
+                converter.selectProjection("gallPeters")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -75,7 +75,7 @@ Rectangle {
             id: projSix
             text: "Sinusoidal"
             onClicked: {
-                converter.convertFile("sinusoidal")
+                converter.selectProjection("sinusoidal")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -84,7 +84,7 @@ Rectangle {
             id: projSeven
             text: "Equal Earth"
             onClicked: {
-                converter.convertFile("equalEarth")
+                converter.selectProjection("equalEarth")
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -92,7 +92,7 @@ Rectangle {
         //OptionsButtons {
         //    text: "Azimuthal Equidistant"
         //    onClicked: {
-        //        converter.convertFile("azimuthalEquidistant")
+        //        converter.selectProjection("azimuthalEquidistant")
         //    }
         //}
 

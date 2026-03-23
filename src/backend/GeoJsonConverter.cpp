@@ -29,10 +29,10 @@ bool GeoJsonConverter::checkFileExists(const std::string path) {
 	return file.good();
 }
 
-Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
+void GeoJsonConverter::convertFile()
 {
-    std::string fileName = "resources/output" + projection.toStdString() + ".svg";
-	if (!checkFileExists(fileName)) { // if cached svg file doesn't exist, create it
+    std::string fileName = "resources/" + currentMap + "_" + currentProjection + ".svg";
+	if (!checkFileExists(fileName)&&(!currentMap.empty())&&(!currentProjection.empty())) { // if cached svg file doesn't exist, create it
         std::ostringstream svgStream;
         svgStream << std::fixed << std::setprecision(7);
 
@@ -52,7 +52,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                     svgStream << "<polygon points=\"";
                     for (const auto& point : polygon) {
                         Projections coordinates(point[0].get<double>(), point[1].get<double>());
-						coordinates.applyProjection(projection);
+						coordinates.applyProjection(currentProjection);
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
                     svgStream << "\" fill=\"#4CAF50\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
@@ -64,7 +64,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                         svgStream << "<polygon points=\"";
                         for (const auto& point : polygon) {
                             Projections coordinates(point[0].get<double>(), point[1].get<double>());
-                            coordinates.applyProjection(projection);
+                            coordinates.applyProjection(currentProjection);
                             svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                         }
                         svgStream << "\" fill=\"#4CAF50\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
@@ -81,7 +81,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                 for (const auto& point : geometry["coordinates"]) {
 
                     Projections coordinates(point[0].get<double>(), point[1].get<double>());
-                    coordinates.applyProjection(projection);
+                    coordinates.applyProjection(currentProjection);
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
                 svgStream << "\" fill=\"none\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
@@ -92,7 +92,7 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
                     for (const auto& point : multiline) {
 
                         Projections coordinates(point[0].get<double>(), point[1].get<double>());
-                        coordinates.applyProjection(projection);
+                        coordinates.applyProjection(currentProjection);
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
                     svgStream << "\" fill=\"none\" stroke=\"#333\" stroke-width=\"0.1\"/>\n";
@@ -105,14 +105,25 @@ Q_INVOKABLE void GeoJsonConverter::convertFile(const QString projection)
         svgFile << svgStream.str();
         svgFile.close();
     }
-    outputSVG(projection);
+    outputSVG();
 }
 
-Q_INVOKABLE QString GeoJsonConverter::outputSVG(const QString projection)
+void GeoJsonConverter::outputSVG()
 {
-    QString filePath = "file:///" + QFileInfo("resources/output"+projection+".svg").absoluteFilePath();
+    QString filePath = "file:///" + QFileInfo("resources/" + QString::fromStdString(currentMap) + "_" + QString::fromStdString(currentProjection) + ".svg").absoluteFilePath();
     qDebug() << filePath;
     emit svgSignal(filePath);
-	emit projectionChanged(projection);
-    return filePath;
+	emit projectionChanged(QString::fromStdString(currentProjection));
+}
+
+Q_INVOKABLE void GeoJsonConverter::selectProjection(const QString projection)
+{
+    currentProjection = projection.toStdString();
+    convertFile();
+}
+
+Q_INVOKABLE void GeoJsonConverter::selectMap(const QString map)
+{
+	currentMap = map.toStdString();
+	convertFile();
 }

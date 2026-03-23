@@ -22,25 +22,20 @@ public:
     explicit GeoJsonConverter(QObject *parent = nullptr);
 
     /**
-	 * @brief Reads vector map data and converts it to SVG format using the specified projection.
+     * @brief Allows frontend to change chosen projection
      *
-	 * This method read through every object within the JSON file, applies a projection algorithm to the coordinates and writes to an SVG file. 
-     * If the SVG file already exists, it will not be created again and the existing file will be used instead.
-     *
-     * @param projection Projection choice to be applied to coordinates.
+     * @param projection QML String for selected map projection.
      *
      */
-    Q_INVOKABLE void convertFile(const QString projection);
+    Q_INVOKABLE void selectProjection(const QString projection);
 
     /**
-	 * @brief Outputs the SVG file path for the specified projection.
+     * @brief Allows frontend to change chosen map
      *
-     * Returns the files path of the cached/generated SVG file and emits a signal, ensuring the svg file is used on the frontend side.
-     *
-     * @param projection Projection choice to be applied to coordinates.
+     * @param projection QML String for selected map.
      *
      */
-    Q_INVOKABLE QString outputSVG(const QString projection);
+    Q_INVOKABLE void selectMap(const QString map);
 
 private:
     /**
@@ -63,6 +58,35 @@ private:
     */
     bool checkFileExists(const std::string path);
 
+    /**
+    * @brief Reads vector map data and converts it to SVG format using the specified projection.
+    *
+    * This method read through every object within the JSON file, applies a projection algorithm to the coordinates and writes to an SVG file.
+    * If the SVG file already exists, it will not be created again and the existing file will be used instead.
+    *
+    */
+    void convertFile();
+
+    /**
+     * @brief Outputs the SVG file path for the specified projection.
+     *
+     * Emits a signal, ensuring the svg file is used on the frontend side.
+     *
+     */
+    void outputSVG();
+
+    /**
+     * @brief Stores currently selected map.
+     *
+     */
+    std::string currentMap;
+
+    /**
+     * @brief Stores currently selected map projection.
+     *
+     */
+    std::string currentProjection;
+
 signals:
     /**
 	* @brief Signal emitted when the SVG file is ready to be used on the frontend side.
@@ -72,6 +96,12 @@ signals:
     */
     void svgSignal(const QString& filePath);
 
+    /**
+    * @brief Signal emitted when the projection has changed and needs to be reflected on the frontend side.
+    *
+    * @param path String of chosen map projection.
+    *
+    */
     void projectionChanged(const QString& projection);
 };
 

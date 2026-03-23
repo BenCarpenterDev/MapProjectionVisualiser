@@ -18,7 +18,8 @@ Window {
         id: converter
 
        Component.onCompleted: {
-            converter.convertFile("webMercator")
+            converter.selectMap("worldMap")
+            converter.selectProjection("webMercator")
         }
 
         onSvgSignal: (filePath) => {
@@ -125,8 +126,8 @@ Window {
         }
     }
 
-    OptionsView{}
-        
+    ProjectionsView{}
+    
     InfoBox{
         id: infoPanel
         opacity: 0.0
