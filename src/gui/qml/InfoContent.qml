@@ -47,7 +47,7 @@ Item{
             width: infoContent.width * 0.8
             wrapMode: Text.WordWrap
             elide: Text.ElideRight
-            text: "Use Cases"
+            text: "Usage"
             font.family: "Helvetica"
             font.pointSize: 18
             font.bold: true
@@ -103,7 +103,7 @@ Item{
                 panelTitle: "Gall Stereographic"
                 projectionCreator: "Created by James Gall in 1855"
                 panelInfo: "This cylindrical projection which distorts sizes less than Mercator and distorts shapes less than Equirectangular." 
-                panelUseCases: "needs writing"
+                panelUseCases: "Used in several British and United States atlases."
             }
         },
         State {
