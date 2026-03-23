@@ -14,7 +14,7 @@ Item{
     padding: 20
         Text{
             text: panelTitle
-            width: infoContent.width * 0.8
+            width: infoContent.width * 0.9
             wrapMode: Text.WordWrap
             font.family: "Helvetica"
             font.pointSize: 20
@@ -61,9 +61,14 @@ Item{
             when: (infoPanel.contentProjection === "wgs84")
             PropertyChanges { 
                 target: infoContent; 
-                panelTitle: "WGS84 / World Geodetic System"; 
-                panelInfo: "Woo"
-                panelUseCases: "The standard for cartography, geodesy, and navigation, including GPS."
+                panelTitle: "WGS84"; 
+                panelInfo: 
+"This is the World Geodetic System, a standard used for mapping and navigation. This system provids a solution to defining locations on Earth, refered to as a reference system.
+\nWGS84 is the latest version, created in 1984 and updated in 2004. 
+\nThis system is maintained by the United States National Geospatial-Intelligence Agency"
+
+                panelUseCases: "Widely used in GPS technology. 
+\nThe raw format for the map you're currently looking at, GeoJSON, uses WGS84 with longitude and latitude degree units."
             }
         },
         State {
@@ -71,8 +76,10 @@ Item{
             when: (infoPanel.contentProjection === "webMercator")
             PropertyChanges { 
                 target: infoContent; 
-                panelTitle: "Web Mercator"; 
-                panelInfo: "The mainstream standard map projection used throughout various media." 
+                panelTitle: "Mercator"; 
+                panelInfo: "The mainstream standard map projection used throughout various literature and online services, created by Geradus Mercator in 1569.
+\nThis is a conformal cylindirical projection, meaning it preserves angles and shapes locally, but distorts areas, especially near the poles. Size of lands are inflated the further they are from the equator.
+\nWeb Mercator is a variant of the original Mercator projection, it's the standard for web mapping applications. Formulas are the same as the standard variation." 
                 panelUseCases: "Used by most online mapping platforms, such as Google Maps and OpenStreetMap."
             }
         },
@@ -82,7 +89,7 @@ Item{
             PropertyChanges { 
                 target: infoContent; 
                 panelTitle: "Gall Stereographic"; 
-                panelInfo: "needs writing" 
+                panelInfo: "A cylindrical projection created by James Gall in 1855. This projection attempts to balance distortion, it distorts sizes less than Mercator and distorts shapes less than Equirectangular." 
                 panelUseCases: "needs writing"
             }
         },
@@ -112,6 +119,16 @@ Item{
             PropertyChanges { 
                 target: infoContent; 
                 panelTitle: "Sinusoidal"; 
+                panelInfo: "needs writing" 
+                panelUseCases: "needs writing"
+            }
+        },
+        State {
+            name: "equalEarth"
+            when: (infoPanel.contentProjection === "equalEarth")
+            PropertyChanges { 
+                target: infoContent; 
+                panelTitle: "Equal Earth"; 
                 panelInfo: "needs writing" 
                 panelUseCases: "needs writing"
             }

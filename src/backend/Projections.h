@@ -110,6 +110,14 @@ private:
 	void sinusoidal();
 
 	/**
+	 * @brief The Equal Earth projection
+	 *
+	 * Applies equal eartg projection algorithm, works in radians
+	 *
+	 */
+	void equalEarth();
+
+	/**
 	 * @brief The Azimuthal Equidistant projection
 	 *
 	 * Applies azimuthal equidistant projection algorithm, works in radians

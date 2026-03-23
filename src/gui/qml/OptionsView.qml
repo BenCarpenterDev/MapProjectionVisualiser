@@ -10,7 +10,7 @@ Rectangle {
     anchors.topMargin: 30
     radius: 8
     width: 140
-    height: 210
+    height: 240
     color: Qt.rgba(0, 0, 0, 0.21)
 
     ColumnLayout {
@@ -23,6 +23,7 @@ Rectangle {
             projFour.state = "Unselected"
             projFive.state = "Unselected"
             projSix.state = "Unselected"
+            projSeven.state = "Unselected"
         }
 
         OptionsButtons {
@@ -75,6 +76,15 @@ Rectangle {
             text: "Sinusoidal"
             onClicked: {
                 converter.convertFile("sinusoidal")
+                parent.resetColours()
+                this.state = "Selected"
+            }
+        }
+        OptionsButtons {
+            id: projSeven
+            text: "Equal Earth"
+            onClicked: {
+                converter.convertFile("equalEarth")
                 parent.resetColours()
                 this.state = "Selected"
             }

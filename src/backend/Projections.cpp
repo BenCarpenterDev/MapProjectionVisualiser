@@ -34,6 +34,9 @@ void Projections::applyProjection(const QString projection) {
 	else if (projection == "sinusoidal") {
 		sinusoidal();
 	}
+	else if (projection == "equalEarth") {
+		equalEarth();
+	}
 	else if (projection == "azimuthalEquidistant") {
 		azimuthalEquidistant();
 	}
@@ -102,6 +105,29 @@ void Projections::sinusoidal() {
 	double x = lon * cos(lat);
 
 	normalise(x, lat, R);
+}
+
+void Projections::equalEarth() {
+	double lon = originalRadiansX;
+	double lat = originalRadiansY;
+
+	double A1 = 1.340264;
+	double A2 = -0.081106;
+	double A3 = 0.000893;
+	double A4 = 0.003796;
+
+	double theta = asin((sqrt(3) / 2) * sin(lat));
+	double theta9 = pow(theta, 9);
+	double theta8 = pow(theta, 8);
+	double theta7 = pow(theta, 7);
+	double theta6 = pow(theta, 6);
+	double theta3 = pow(theta, 3);
+	double theta2 = pow(theta, 2);
+
+	double x = (2 * sqrt(3) * lon * cos(theta)) / (3 * (9 * A4 * theta7 + 7 * A3 * theta2 + A1));
+	double y = A4 * theta9 + A3 * theta7 + A2 * theta3 + A1 * theta;
+
+	normalise(x, y, R);
 }
 
 void Projections::azimuthalEquidistant() {

@@ -35,7 +35,7 @@ Window {
         id: worldMapContainer
         width: parent.width
         height: parent.height
-        color: "white"
+        color: "#9FCBF9"
 
         x: (parent.width  - width)  / 2
         y: (parent.height - height) / 2
