@@ -6,6 +6,7 @@ Item{
     id: infoContent
     width: parent.width
     property string panelTitle
+    property string projectionCreator
     property string panelInfo
     property string panelUseCases
         
@@ -18,6 +19,16 @@ Item{
             wrapMode: Text.WordWrap
             font.family: "Helvetica"
             font.pointSize: 20
+            font.bold: true
+            color: "#f4f0ec"
+        }
+
+        Text{
+            text: projectionCreator
+            width: infoContent.width * 0.9
+            wrapMode: Text.WordWrap
+            font.family: "Helvetica"
+            font.pointSize: 8
             font.bold: true
             color: "#f4f0ec"
         }
@@ -60,12 +71,12 @@ Item{
             name: "wgs84"
             when: (infoPanel.contentProjection === "wgs84")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "WGS84"; 
+                target: infoContent 
+                panelTitle: "WGS84"
+                projectionCreator: "Maintained by United States National Geospatial-Intelligence Agency in 1984, updated in 2004"
                 panelInfo: 
 "This is the World Geodetic System, a standard used for mapping and navigation. This system provids a solution to defining locations on Earth, refered to as a reference system.
-\nWGS84 is the latest version, created in 1984 and updated in 2004. 
-\nThis system is maintained by the United States National Geospatial-Intelligence Agency"
+\nWGS84 is the latest version, created in 1984 and updated in 2004."
 
                 panelUseCases: "Widely used in GPS technology. 
 \nThe raw format for the map you're currently looking at, GeoJSON, uses WGS84 with longitude and latitude degree units."
@@ -75,9 +86,10 @@ Item{
             name: "webMercator"
             when: (infoPanel.contentProjection === "webMercator")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "Mercator"; 
-                panelInfo: "The mainstream standard map projection used throughout various literature and online services, created by Geradus Mercator in 1569.
+                target: infoContent
+                panelTitle: "Mercator"
+                projectionCreator: "Created by Geradus Mercator in 1569"
+                panelInfo: "The mainstream standard map projection used throughout various literature and online services.
 \nThis is a conformal cylindirical projection, meaning it preserves angles and shapes locally, but distorts areas, especially near the poles. Size of lands are inflated the further they are from the equator.
 \nWeb Mercator is a variant of the original Mercator projection, it's the standard for web mapping applications. Formulas are the same as the standard variation." 
                 panelUseCases: "Used by most online mapping platforms, such as Google Maps and OpenStreetMap."
@@ -87,9 +99,10 @@ Item{
             name: "gallStereographic"
             when: (infoPanel.contentProjection === "gallStereographic")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "Gall Stereographic"; 
-                panelInfo: "A cylindrical projection created by James Gall in 1855. This projection attempts to balance distortion, it distorts sizes less than Mercator and distorts shapes less than Equirectangular." 
+                target: infoContent
+                panelTitle: "Gall Stereographic"
+                projectionCreator: "Created by James Gall in 1855"
+                panelInfo: "This cylindrical projection attempts to balance distortion, it distorts sizes less than Mercator and distorts shapes less than Equirectangular." 
                 panelUseCases: "needs writing"
             }
         },
@@ -97,8 +110,9 @@ Item{
             name: "winkelTripel"
             when: (infoPanel.contentProjection === "winkelTripel")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "Winkel Tripel"; 
+                target: infoContent
+                panelTitle: "Winkel Tripel"
+                projectionCreator: "Created by Oswald Winkel in 1921"
                 panelInfo: "needs writing" 
                 panelUseCases: "needs writing"
             }
@@ -107,18 +121,21 @@ Item{
             name: "gallPeters"
             when: (infoPanel.contentProjection === "gallPeters")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "Gall Peters"; 
-                panelInfo: "needs writing" 
-                panelUseCases: "needs writing"
+                target: infoContent
+                panelTitle: "Gall Peters"
+                projectionCreator: "Created by James Gall in 1855 and reintroduced by Arno Peters in 1973"
+                panelInfo: "A rectangular equal-area projection." 
+                panelUseCases: "Widely used by British Schools.
+\nAdditionally, Massachusetts and Boston public schools utilise this projection as standard since March 2017."
             }
         },
         State {
             name: "sinusoidal"
             when: (infoPanel.contentProjection === "sinusoidal")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "Sinusoidal"; 
+                target: infoContent
+                panelTitle: "Sinusoidal"
+                projectionCreator: "Created by Jean Cossin in 1570"
                 panelInfo: "needs writing" 
                 panelUseCases: "needs writing"
             }
@@ -127,10 +144,12 @@ Item{
             name: "equalEarth"
             when: (infoPanel.contentProjection === "equalEarth")
             PropertyChanges { 
-                target: infoContent; 
-                panelTitle: "Equal Earth"; 
-                panelInfo: "needs writing" 
-                panelUseCases: "needs writing"
+                target: infoContent
+                panelTitle: "Equal Earth"
+                projectionCreator: "Created by Bojan Šavrič, Bernhard Jenny and Tom Patterson in 2018"
+                panelInfo: "A modern equal-area pseudocylindrical projection aiming to retain the sizes of areas." 
+                panelUseCases: "Was used by NASA's Goddard Institude for Space Studies showing the global mean temperature anamoly.
+\n'Correct the Map' campaign has declared the wider adoption for this projection as an alternative to Mercator."
             }
         }
     ]
