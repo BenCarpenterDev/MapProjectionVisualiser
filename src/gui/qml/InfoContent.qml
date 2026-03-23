@@ -102,7 +102,7 @@ Item{
                 target: infoContent
                 panelTitle: "Gall Stereographic"
                 projectionCreator: "Created by James Gall in 1855"
-                panelInfo: "This cylindrical projection attempts to balance distortion, it distorts sizes less than Mercator and distorts shapes less than Equirectangular." 
+                panelInfo: "This cylindrical projection which distorts sizes less than Mercator and distorts shapes less than Equirectangular." 
                 panelUseCases: "needs writing"
             }
         },
@@ -113,8 +113,9 @@ Item{
                 target: infoContent
                 panelTitle: "Winkel Tripel"
                 projectionCreator: "Created by Oswald Winkel in 1921"
-                panelInfo: "needs writing" 
-                panelUseCases: "needs writing"
+                panelInfo: "A modified azimuhtal projection aiming to minimise three ('tripel') kinds of distortions; area, direction and distance." 
+                panelUseCases: "Used as the standard by the National Geographic Society since 1998, replacing the Robinson Projection.
+\nAlso used widely by educational institudes and textbooks."
             }
         },
         State {
@@ -136,8 +137,9 @@ Item{
                 target: infoContent
                 panelTitle: "Sinusoidal"
                 projectionCreator: "Created by Jean Cossin in 1570"
-                panelInfo: "needs writing" 
-                panelUseCases: "needs writing"
+                panelInfo: "A pseuodcylindrical equal-area projection which represents the poles as points with distorted meridans and continents.
+\nThe equator and central meridians are the most accurate, distortion occuring the further away from the centre, increasing inaccuracies." 
+                panelUseCases: "Used by NASA's Moderate Resolution Imaging Spectroradimater team."
             }
         },
         State {
