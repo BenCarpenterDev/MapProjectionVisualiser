@@ -7,7 +7,7 @@ import GeoJsonConverter
 
 Window {
     id: mainWindow
-    title: qsTr("MapProjectionVisualiser")
+    title: qsTr("Map Projection Visualiser")
     width: 1920
     height: 1080
     visible: true
@@ -126,9 +126,11 @@ Window {
         }
     }
 
-    ProjectionsView{}
+    ProjectionsPanel{}
+
+    MapPanel{}
     
-    InfoBox{
+    InfoPanel{
         id: infoPanel
         opacity: 0.0
     }

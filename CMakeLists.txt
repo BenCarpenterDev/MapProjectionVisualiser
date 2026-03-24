@@ -37,10 +37,11 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
 set(qml_resource_files
     "src/gui/qml/MainView.qml"
     "src/gui/qml/OptionsButtons.qml"
-    "src/gui/qml/ProjectionsView.qml"
-    "src/gui/qml/InfoBox.qml"
+    "src/gui/qml/ProjectionsPanel.qml"
+    "src/gui/qml/InfoPanel.qml"
     "src/gui/qml/InfoButton.qml"
     "src/gui/qml/InfoContent.qml"
+    "src/gui/qml/MapPanel.qml"
 )
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources  DESTINATION ${PROJECT_BINARY_DIR} ) 

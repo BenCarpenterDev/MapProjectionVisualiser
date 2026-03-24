@@ -58,6 +58,8 @@ private:
     */
     bool checkFileExists(const std::string path);
 
+    void svgContentFormat(std::ostringstream& svgStream, nlohmann::json jsonFile, std::string fillColour, std::string strokeColour);
+
     /**
     * @brief Reads vector map data and converts it to SVG format using the specified projection.
     *
