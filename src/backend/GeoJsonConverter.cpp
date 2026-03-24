@@ -108,8 +108,10 @@ void GeoJsonConverter::convertFile()
         {
             nlohmann::json land = readFile("resources/ne_110m_land.json");
             nlohmann::json grid = readFile("resources/ne_110m_graticules_10.json");
+            nlohmann::json boundingBox = readFile("resources/ne_110m_wgs84_bounding_box.json");
             svgContentFormat(svgStream, land, "#4CAF50", "#333");
             svgContentFormat(svgStream, grid, "none", "#333");
+            svgContentFormat(svgStream, boundingBox, "none", "#333");
         }
         else if (currentMap=="ukMap")
         {
