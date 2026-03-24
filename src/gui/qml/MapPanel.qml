@@ -43,9 +43,9 @@ Rectangle {
         }
         OptionsButtons {
             id: mapThree
-            text: "UK"
+            text: "Pangaea Map"
             onClicked: {
-                converter.selectMap("ukMap")
+                converter.selectMap("preHistoricMap")
                 parent.resetColours()
                 this.state = "Selected"
             }

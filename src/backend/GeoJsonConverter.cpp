@@ -113,6 +113,11 @@ void GeoJsonConverter::convertFile()
             svgContentFormat(svgStream, grid, "none", "#333");
             svgContentFormat(svgStream, boundingBox, "none", "#333");
         }
+        else if (currentMap == "preHistoricMap")
+        {
+            nlohmann::json historicLand = readFile("resources/pangaea.json");
+            svgContentFormat(svgStream, historicLand, "#4CAF50", "#333");
+        }
         else if (currentMap=="ukMap")
         {
             nlohmann::json uk = readFile("resources/ne_10m_uk.json");
