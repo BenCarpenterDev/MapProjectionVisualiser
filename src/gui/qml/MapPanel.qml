@@ -13,6 +13,8 @@ Rectangle {
     height: 140
     color: Qt.rgba(0, 0, 0, 0.21)
 
+    property bool gridEnabled: gridToggle.checked
+
     ColumnLayout {
         anchors.centerIn: parent
 
@@ -20,7 +22,6 @@ Rectangle {
             mapOne.state = "Unselected"
             mapTwo.state = "Unselected"
             mapThree.state = "Unselected"
-            mapFour.state = "Unselected"
         }
 
         OptionsButtons {
@@ -34,15 +35,6 @@ Rectangle {
         }
         OptionsButtons {
             id: mapTwo
-            text: "Grid"
-            onClicked: {
-                converter.selectMap("gridMap")
-                parent.resetColours()
-                this.state = "Selected"
-            }
-        }
-        OptionsButtons {
-            id: mapThree
             text: "Pangaea Map"
             onClicked: {
                 converter.selectMap("preHistoricMap")
@@ -51,13 +43,17 @@ Rectangle {
             }
         }
         OptionsButtons {
-            id: mapFour
-            text: "Placeholder 4"
+            id: mapThree
+            text: "Shapes"
             onClicked: {
-                //converter.selectProjection("winkelTripel")
+                converter.selectMap("shapesMap")
                 parent.resetColours()
                 this.state = "Selected"
             }
+        }
+        CheckBox {
+            id: gridToggle
+            text: qsTr("Graticules Grid")
         }
 
         Component.onCompleted: {

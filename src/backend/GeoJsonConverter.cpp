@@ -40,7 +40,7 @@ void GeoJsonConverter::svgContentFormat(std::ostringstream& svgStream, nlohmann:
                     coordinates.applyProjection(currentProjection);
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
-                svgStream << "\" fill=\""+fillColour+"\" stroke=\""+strokeColour+"\" stroke-width=\"0.1\"/>\n";
+                svgStream << "\" fill=\""+fillColour+"\" stroke=\""+strokeColour+"\" stroke-width=\"0.3\"/>\n";
             }
         }
         else if (type == "MultiPolygon") {
@@ -52,7 +52,7 @@ void GeoJsonConverter::svgContentFormat(std::ostringstream& svgStream, nlohmann:
                         coordinates.applyProjection(currentProjection);
                         svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                     }
-                    svgStream << "\" fill=\"" + fillColour + "\" stroke=\"" + strokeColour + "\" stroke-width=\"0.1\"/>\n";
+                    svgStream << "\" fill=\"" + fillColour + "\" stroke=\"" + strokeColour + "\" stroke-width=\"0.3\"/>\n";
                 }
             }
         }
@@ -64,7 +64,7 @@ void GeoJsonConverter::svgContentFormat(std::ostringstream& svgStream, nlohmann:
                 coordinates.applyProjection(currentProjection);
                 svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
             }
-            svgStream << "\" fill=\"" + fillColour + "\" stroke=\"" + strokeColour + "\" stroke-width=\"0.1\"/>\n";
+            svgStream << "\" fill=\"" + fillColour + "\" stroke=\"" + strokeColour + "\" stroke-width=\"0.3\"/>\n";
         }
         else if (type == "MultiLineString") {
             for (const auto& multiline : geometry["coordinates"]) {
@@ -75,16 +75,16 @@ void GeoJsonConverter::svgContentFormat(std::ostringstream& svgStream, nlohmann:
                     coordinates.applyProjection(currentProjection);
                     svgStream << " " << coordinates.projectedX << "," << coordinates.projectedY;
                 }
-                svgStream << "\" fill=\"" + fillColour + "\" stroke=\"" + strokeColour + "\" stroke-width=\"0.1\"/>\n";
+                svgStream << "\" fill=\"" + fillColour + "\" stroke=\"" + strokeColour + "\" stroke-width=\"0.3\"/>\n";
             }
         }
     }
 }
 
-void GeoJsonConverter::convertFile()
+void GeoJsonConverter::convertFile(std::string selectedMap)
 {
-    std::string fileName = "resources/" + currentMap + "_" + currentProjection + ".svg";
-    if (!checkFileExists(fileName) && (!currentMap.empty()) && (!currentProjection.empty())) { // if cached svg file doesn't exist, create it
+    std::string fileName = "resources/" + selectedMap + "_" + currentProjection + ".svg";
+    if (!checkFileExists(fileName) && (!selectedMap.empty()) && (!currentProjection.empty())) { // if cached svg file doesn't exist, create it
         std::ostringstream svgStream;
         svgStream << std::fixed << std::setprecision(7);
 
@@ -92,7 +92,7 @@ void GeoJsonConverter::convertFile()
         svgStream << "<rect width=\"" << 800 << "\" height=\"" << 800 << "\" fill=\"transparent\"/>\n";
         // should put height and width as constants
 
-        if (currentMap=="worldMap")
+        if (selectedMap =="worldMap")
         {
             nlohmann::json land = readFile("resources/ne_110m_land.json");
             nlohmann::json boundaries = readFile("resources/ne_110m_admin_0_boundary_lines_land.json");
@@ -104,24 +104,25 @@ void GeoJsonConverter::convertFile()
 			svgContentFormat(svgStream, lakes, "#72AFED", "#72AFED");
             svgContentFormat(svgStream, lakeCenterlines, "none", "#72AFED");
         }
-        else if (currentMap == "gridMap")
+        else if (selectedMap == "gridMap")
         {
-            nlohmann::json land = readFile("resources/ne_110m_land.json");
             nlohmann::json grid = readFile("resources/ne_110m_graticules_10.json");
             nlohmann::json boundingBox = readFile("resources/ne_110m_wgs84_bounding_box.json");
-            svgContentFormat(svgStream, land, "#4CAF50", "#333");
             svgContentFormat(svgStream, grid, "none", "#333");
             svgContentFormat(svgStream, boundingBox, "none", "#333");
         }
-        else if (currentMap == "preHistoricMap")
+        else if (selectedMap == "preHistoricMap")
         {
             nlohmann::json historicLand = readFile("resources/pangaea.json");
             svgContentFormat(svgStream, historicLand, "#4CAF50", "#333");
         }
-        else if (currentMap=="ukMap")
+        else if (selectedMap =="shapesMap")
         {
-            nlohmann::json uk = readFile("resources/ne_10m_uk.json");
-            svgContentFormat(svgStream, uk, "#4CAF50", "#333");
+            svgContentFormat(svgStream, readFile("resources/shape1.json"), "red", "#333");
+            svgContentFormat(svgStream, readFile("resources/shape2.json"), "blue", "#333");
+            svgContentFormat(svgStream, readFile("resources/shape3.json"), "green", "#333");
+            svgContentFormat(svgStream, readFile("resources/shape4.json"), "yellow", "#333");
+            svgContentFormat(svgStream, readFile("resources/ne_110m_wgs84_bounding_box.json"), "none", "#333");
 		}
         svgStream << "</svg>\n";
         std::ofstream svgFile(fileName);
@@ -134,19 +135,21 @@ void GeoJsonConverter::convertFile()
 void GeoJsonConverter::outputSVG()
 {
     QString filePath = "file:///" + QFileInfo("resources/" + QString::fromStdString(currentMap) + "_" + QString::fromStdString(currentProjection) + ".svg").absoluteFilePath();
-    qDebug() << filePath;
-    emit svgSignal(filePath);
+    emit mapChanged(filePath);
 	emit projectionChanged(QString::fromStdString(currentProjection));
 }
 
 Q_INVOKABLE void GeoJsonConverter::selectProjection(const QString projection)
 {
     currentProjection = projection.toStdString();
-    convertFile();
+    convertFile(currentMap);
+    convertFile("gridMap");
+    QString filePath = "file:///" + QFileInfo("resources/gridMap_" + QString::fromStdString(currentProjection) + ".svg").absoluteFilePath();
+    emit gridChanged(filePath);
 }
 
 Q_INVOKABLE void GeoJsonConverter::selectMap(const QString map)
 {
 	currentMap = map.toStdString();
-	convertFile();
+	convertFile(currentMap);
 }

@@ -89,12 +89,15 @@ Rectangle {
                 this.state = "Selected"
             }
         }
-        //OptionsButtons {
-        //    text: "Azimuthal Equidistant"
-        //    onClicked: {
-        //        converter.selectProjection("azimuthalEquidistant")
-        //    }
-        //}
+ 
+/*
+        OptionsButtons {
+            text: "Azimuthal Equidistant"
+            onClicked: {
+                converter.selectProjection("azimuthalEquidistant")
+            }
+        }
+*/
 
         Component.onCompleted: {
             projTwo.state = "Selected"

@@ -76,7 +76,8 @@ private:
 	 * @brief The WGS84 projection
 	 *
 	 * Applies original json coordinates, works in degrees
-	 * Additonal Note: This coordinate system has bounds of -180 to 180 and -90 to 90, so scaling by svgBox/360 means that the map will fit within the svg box.
+	 * Additonal Note: This coordinate system has bounds of -180 to 180 and -90 to 90, 
+	 * so scaling by svgBox/360 means that the map will fit within the svg box.
 	 *
 	 */
 	void wgs84();
@@ -84,7 +85,8 @@ private:
 	 * @brief The Gall Stereographic projection
 	 *
 	 * Applies gall stereographic projection algorithm, works in radians
-	 * Additonal Note: This projection already is being multiplied by the radius, so scale is 1, but it still needs to be normalised to fit in the svg box.
+	 * Additonal Note: This projection already is being multiplied by the radius, 
+	 * so scale is 1, but it still needs to be normalised to fit in the svg box.
 	 *
 	 */
 	void gallStereographic();

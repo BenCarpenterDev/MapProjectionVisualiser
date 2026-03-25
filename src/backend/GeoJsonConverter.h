@@ -67,7 +67,7 @@ private:
     * If the SVG file already exists, it will not be created again and the existing file will be used instead.
     *
     */
-    void convertFile();
+    void convertFile(std::string selectedMap);
 
     /**
      * @brief Outputs the SVG file path for the specified projection.
@@ -91,12 +91,20 @@ private:
 
 signals:
     /**
-	* @brief Signal emitted when the SVG file is ready to be used on the frontend side.
+	* @brief Signal emitted when the maps's SVG file is ready to be used on the frontend side.
     *
-    * @param path File path of generated SVG file.
+    * @param path File path of generated map SVG file.
     *
     */
-    void svgSignal(const QString& filePath);
+    void mapChanged(const QString& filePath);
+
+    /**
+    * @brief Signal emitted when the grid's SVG file is ready to be used on the frontend side.
+    *
+    * @param path File path of generated grid SVG file.
+    *
+    */
+    void gridChanged(const QString& filePath);
 
     /**
     * @brief Signal emitted when the projection has changed and needs to be reflected on the frontend side.

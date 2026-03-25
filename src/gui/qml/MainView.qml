@@ -22,9 +22,12 @@ Window {
             converter.selectProjection("webMercator")
         }
 
-        onSvgSignal: (filePath) => {
-            console.log("SVG signal recieved with file path: " + filePath)
+        onMapChanged: (filePath) => {
             worldMap.source = filePath
+        }
+
+        onGridChanged: (filePath) => {
+            gridMap.source = filePath
         }
 
         onProjectionChanged: (projection) => {
@@ -48,6 +51,16 @@ Window {
             preferredRendererType: VectorImage.CurveRenderer
             anchors.centerIn: parent
             assumeTrustedSource: true
+        }
+
+        VectorImage {
+            id: gridMap
+            width: mainWindow.sourceSize
+            height: mainWindow.sourceSize
+            preferredRendererType: VectorImage.CurveRenderer
+            anchors.centerIn: parent
+            assumeTrustedSource: true
+            visible: mapPanel.gridEnabled
         }
 
         transform: Scale {
@@ -128,7 +141,9 @@ Window {
 
     ProjectionsPanel{}
 
-    MapPanel{}
+    MapPanel{
+        id: mapPanel
+    }
     
     InfoPanel{
         id: infoPanel
