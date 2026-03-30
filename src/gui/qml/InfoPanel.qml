@@ -13,7 +13,7 @@ Rectangle {
     anchors.topMargin: 30
     radius: 8
     width: 300
-    height: width*2
+    height: width*2.1
     color: Qt.rgba(0, 0, 0, 0.21)
 
     InfoContent{
