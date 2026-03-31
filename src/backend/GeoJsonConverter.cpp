@@ -95,9 +95,9 @@ void GeoJsonConverter::convertFile(std::string selectedMap)
         if (selectedMap =="worldMap")
         {
             nlohmann::json land = readFile("resources/ne_110m_land.geojson");
-            nlohmann::json boundaries = readFile("resources/ne_110m_admin_0_boundary_lines_land.json");
-            nlohmann::json lakes = readFile("resources/ne_110m_lakes.json");
-            nlohmann::json lakeCenterlines = readFile("resources/ne_110m_rivers_lake_centerlines.json");
+            nlohmann::json boundaries = readFile("resources/ne_110m_admin_0_boundary_lines_land.geojson");
+            nlohmann::json lakes = readFile("resources/ne_110m_lakes.geojson");
+            nlohmann::json lakeCenterlines = readFile("resources/ne_110m_rivers_lake_centerlines.geojson");
 
             svgContentFormat(svgStream, land, "#4CAF50", "#333");
             svgContentFormat(svgStream, boundaries, "none", "#333");
@@ -106,8 +106,8 @@ void GeoJsonConverter::convertFile(std::string selectedMap)
         }
         else if (selectedMap == "gridMap")
         {
-            nlohmann::json grid = readFile("resources/ne_110m_graticules_10.json");
-            nlohmann::json boundingBox = readFile("resources/ne_110m_wgs84_bounding_box.json");
+            nlohmann::json grid = readFile("resources/ne_110m_graticules_10.geojson");
+            nlohmann::json boundingBox = readFile("resources/ne_110m_wgs84_bounding_box.geojson");
             svgContentFormat(svgStream, grid, "none", "#333");
             svgContentFormat(svgStream, boundingBox, "none", "#333");
         }
@@ -122,7 +122,6 @@ void GeoJsonConverter::convertFile(std::string selectedMap)
             svgContentFormat(svgStream, readFile("resources/shape2.json"), "blue", "#333");
             svgContentFormat(svgStream, readFile("resources/shape3.json"), "green", "#333");
             svgContentFormat(svgStream, readFile("resources/shape4.json"), "yellow", "#333");
-            svgContentFormat(svgStream, readFile("resources/ne_110m_wgs84_bounding_box.json"), "none", "#333");
 		}
         svgStream << "</svg>\n";
         std::ofstream svgFile(fileName);
