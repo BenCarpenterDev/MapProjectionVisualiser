@@ -94,7 +94,7 @@ void GeoJsonConverter::convertFile(std::string selectedMap)
 
         if (selectedMap =="worldMap")
         {
-            nlohmann::json land = readFile("resources/ne_110m_land.json");
+            nlohmann::json land = readFile("resources/ne_110m_land.geojson");
             nlohmann::json boundaries = readFile("resources/ne_110m_admin_0_boundary_lines_land.json");
             nlohmann::json lakes = readFile("resources/ne_110m_lakes.json");
             nlohmann::json lakeCenterlines = readFile("resources/ne_110m_rivers_lake_centerlines.json");

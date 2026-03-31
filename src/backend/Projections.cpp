@@ -7,6 +7,10 @@ constexpr double M_PI = 3.14159265358979323846;
 
 Projections::Projections(double x, double y)
 {
+	if (y == -90) {
+		y = -89.999999; // to avoid issues with the web mercator projection, which has a bound of -85.0511 to 85.0511
+	};
+
 	originalDegreesX = x;
 	originalDegreesY = y;
 	originalRadiansX = x * (M_PI / 180);
