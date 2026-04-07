@@ -88,7 +88,8 @@ Window {
                 var incrementScale = pinch.scale-pinch.previousScale
                 var newZoom = prevScale+incrementScale
 
-                if (newZoom <= maxScale && newZoom >= minScale) { // doesn't go out of min and max scale
+                if (newZoom <= maxScale && newZoom >= minScale) {
+                    // doesn't go out of min and max scale
                     nextScale = newZoom
                 }
             }                 
