@@ -8,10 +8,16 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 include(FetchContent)
-FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz)
+FetchContent_Declare(
+    json 
+    URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
 FetchContent_MakeAvailable(json)
 
 find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
+
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 qt_add_executable(MapProjectionVisualiser WIN32 MACOSX_BUNDLE
     "src/main.cpp"
@@ -27,6 +33,22 @@ set_target_properties(MapProjectionVisualiser PROPERTIES
 )
 
 target_link_libraries(MapProjectionVisualiser  PUBLIC
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    nlohmann_json::nlohmann_json
+)
+
+add_executable (MapProjectionVisualiserTest
+    "src/tests/unit/projectionsTest.cpp"
+    "src/backend/GeoJsonConverter.cpp" 
+    "src/backend/GeoJsonConverter.h"
+    "src/backend/Projections.cpp"
+    "src/backend/Projections.h"
+)
+
+target_link_libraries(MapProjectionVisualiserTest PRIVATE
+    Boost::unit_test_framework
     Qt::Core
     Qt::Gui
     Qt::Qml
