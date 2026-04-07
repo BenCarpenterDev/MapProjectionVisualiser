@@ -7,10 +7,6 @@ constexpr double M_PI = 3.14159265358979323846;
 
 Projections::Projections(double x, double y)
 {
-	if (y == -90) {
-		y = -89.999999; // to avoid rendering issues with the web mercator projection
-	};
-
 	originalDegreesX = x;
 	originalDegreesY = y;
 	originalRadiansX = x * (M_PI / 180);
@@ -63,6 +59,11 @@ void Projections::webMercator() {
 	double lat = originalRadiansY;
 	double x = (1 / (2 * (M_PI))) * (M_PI + lon);
 	double y = (1/(2*(M_PI))*(M_PI - log(tan((M_PI / 4) + (lat / 2)))));
+
+	if (originalDegreesY == -90) {
+		y = 5.4415494479545350; // to avoid rendering issues with the web mercator projection
+	};
+
 	projectedX = x * SVGBOX;
 	projectedY = y * SVGBOX;
 }

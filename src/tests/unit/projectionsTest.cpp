@@ -22,7 +22,6 @@ BOOST_AUTO_TEST_CASE(PROJ_UT1_Constructor)
 std::string wmSelection = "webMercator";
 BOOST_AUTO_TEST_CASE(PROJ_UT2_applyWebMercator)
 {
-
 	upperRight.applyProjection(wmSelection);
 	lowerRight.applyProjection(wmSelection);
 	upperLeft.applyProjection(wmSelection);
@@ -31,17 +30,16 @@ BOOST_AUTO_TEST_CASE(PROJ_UT2_applyWebMercator)
 	BOOST_CHECK_EQUAL((upperRight.projectedX), 800);
 	BOOST_CHECK_EQUAL((upperRight.projectedY), -4353.239558363628);
 	BOOST_CHECK_EQUAL((lowerRight.projectedX), 800);
-	BOOST_CHECK_EQUAL((lowerRight.projectedY), 2762.7359442834086);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 4353.239558363628);
 	BOOST_CHECK_EQUAL((upperLeft.projectedX), 0);
 	BOOST_CHECK_EQUAL((upperLeft.projectedY), -4353.239558363628);
 	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 0);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 2762.7359442834086);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 4353.239558363628);
 }
 
 std::string wgs84Selection = "wgs84";
 BOOST_AUTO_TEST_CASE(PROJ_UT3_applyWgs84)
 {
-
 	upperRight.applyProjection(wgs84Selection);
 	lowerRight.applyProjection(wgs84Selection);
 	upperLeft.applyProjection(wgs84Selection);
@@ -50,17 +48,16 @@ BOOST_AUTO_TEST_CASE(PROJ_UT3_applyWgs84)
 	BOOST_CHECK_EQUAL((upperRight.projectedX), 760);
 	BOOST_CHECK_EQUAL((upperRight.projectedY), 220);
 	BOOST_CHECK_EQUAL((lowerRight.projectedX), 760);
-	BOOST_CHECK_EQUAL((lowerRight.projectedY), 579.99999800000001);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 580);
 	BOOST_CHECK_EQUAL((upperLeft.projectedX), 40);
 	BOOST_CHECK_EQUAL((upperLeft.projectedY), 220);
 	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 40);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 579.99999800000001);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 580);
 }
 
 std::string gsSelection = "gallStereographic";
 BOOST_AUTO_TEST_CASE(PROJ_UT4_applyGallStereographic)
 {
-
 	upperRight.applyProjection(gsSelection);
 	lowerRight.applyProjection(gsSelection);
 	upperLeft.applyProjection(gsSelection);
@@ -69,17 +66,16 @@ BOOST_AUTO_TEST_CASE(PROJ_UT4_applyGallStereographic)
 	BOOST_CHECK_EQUAL((upperRight.projectedX), 799.85946443425291);
 	BOOST_CHECK_EQUAL((upperRight.projectedY), 92.720779386421498);
 	BOOST_CHECK_EQUAL((lowerRight.projectedX), 799.85946443425291);
-	BOOST_CHECK_EQUAL((lowerRight.projectedY), 707.27921525054444);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 707.27922061357845);
 	BOOST_CHECK_EQUAL((upperLeft.projectedX), 0.14053556574708637);
 	BOOST_CHECK_EQUAL((upperLeft.projectedY), 92.720779386421498);
 	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 0.14053556574708637);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 707.27921525054444);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 707.27922061357845);
 }
 
 std::string wtSelection = "winkelTripel";
 BOOST_AUTO_TEST_CASE(PROJ_UT5_applyWinkelTripel)
 {
-
 	upperRight.applyProjection(wtSelection);
 	lowerRight.applyProjection(wtSelection);
 	upperLeft.applyProjection(wtSelection);
@@ -87,31 +83,66 @@ BOOST_AUTO_TEST_CASE(PROJ_UT5_applyWinkelTripel)
 
 	BOOST_CHECK_EQUAL((upperRight.projectedX), 580);
 	BOOST_CHECK_EQUAL((upperRight.projectedY), 117.25666117691861);
-	BOOST_CHECK_EQUAL((lowerRight.projectedX), 580.00000493480218);
-	BOOST_CHECK_EQUAL((lowerRight.projectedY), 682.74333725228507);
+	BOOST_CHECK_EQUAL((lowerRight.projectedX), 580);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 682.74333882308133);
 	BOOST_CHECK_EQUAL((upperLeft.projectedX), 220);
 	BOOST_CHECK_EQUAL((upperLeft.projectedY), 117.25666117691861);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 219.99999506519782);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 682.74333725228507);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 220);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 682.74333882308133);
 }
 
-std::string wtSelection = "winkelTripel";
-BOOST_AUTO_TEST_CASE(PROJ_UT4_applyWinkelTripel)
+std::string gpSelection = "gallPeters";
+BOOST_AUTO_TEST_CASE(PROJ_UT6_applyGallPeters)
 {
+	upperRight.applyProjection(gpSelection);
+	lowerRight.applyProjection(gpSelection);
+	upperLeft.applyProjection(gpSelection);
+	lowerLeft.applyProjection(gpSelection);
 
-	upperRight.applyProjection(wtSelection);
-	lowerRight.applyProjection(wtSelection);
-	upperLeft.applyProjection(wtSelection);
-	lowerLeft.applyProjection(wtSelection);
+	BOOST_CHECK_EQUAL((upperRight.projectedX), 965.48667764616278);
+	BOOST_CHECK_EQUAL((upperRight.projectedY), 40);
+	BOOST_CHECK_EQUAL((lowerRight.projectedX), 965.48667764616278);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 760);
+	BOOST_CHECK_EQUAL((upperLeft.projectedX), -165.48667764616278);
+	BOOST_CHECK_EQUAL((upperLeft.projectedY), 40);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedX), -165.48667764616278);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 760);
+}
 
-	BOOST_CHECK_EQUAL((upperRight.projectedX), 580);
+std::string siSelection = "sinusoidal";
+BOOST_AUTO_TEST_CASE(PROJ_UT7_applySinusoidal)
+{
+	upperRight.applyProjection(siSelection);
+	lowerRight.applyProjection(siSelection);
+	upperLeft.applyProjection(siSelection);
+	lowerLeft.applyProjection(siSelection);
+
+	BOOST_CHECK_EQUAL((upperRight.projectedX), 400.00000000000006);
 	BOOST_CHECK_EQUAL((upperRight.projectedY), 117.25666117691861);
-	BOOST_CHECK_EQUAL((lowerRight.projectedX), 580.00000493480218);
-	BOOST_CHECK_EQUAL((lowerRight.projectedY), 682.74333725228507);
-	BOOST_CHECK_EQUAL((upperLeft.projectedX), 220);
+	BOOST_CHECK_EQUAL((lowerRight.projectedX), 400.00000000000006);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 682.74333882308133);
+	BOOST_CHECK_EQUAL((upperLeft.projectedX), 399.99999999999994);
 	BOOST_CHECK_EQUAL((upperLeft.projectedY), 117.25666117691861);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 219.99999506519782);
-	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 682.74333725228507);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 399.99999999999994);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 682.74333882308133);
+}
+
+std::string eeSelection = "equalEarth";
+BOOST_AUTO_TEST_CASE(PROJ_UT8_applyEqualEarth)
+{
+	upperRight.applyProjection(eeSelection);
+	lowerRight.applyProjection(eeSelection);
+	upperLeft.applyProjection(eeSelection);
+	lowerLeft.applyProjection(eeSelection);
+
+	BOOST_CHECK_EQUAL((upperRight.projectedX), 634.15609264112254);
+	BOOST_CHECK_EQUAL((upperRight.projectedY), 162.87470335166566);
+	BOOST_CHECK_EQUAL((lowerRight.projectedX), 651.15347055535403);
+	BOOST_CHECK_EQUAL((lowerRight.projectedY), 637.12529664833437);
+	BOOST_CHECK_EQUAL((upperLeft.projectedX), 165.8439073588774);
+	BOOST_CHECK_EQUAL((upperLeft.projectedY), 162.87470335166566);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedX), 148.84652944464599);
+	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 637.12529664833437);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
