@@ -19,9 +19,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT1_Constructor)
 	BOOST_CHECK_EQUAL((proj.projectedY), 0);
 }
 
-std::string wmSelection = "webMercator";
 BOOST_AUTO_TEST_CASE(PROJ_UT2_applyWebMercator)
 {
+	std::string wmSelection = "webMercator";
 	upperRight.applyProjection(wmSelection);
 	lowerRight.applyProjection(wmSelection);
 	upperLeft.applyProjection(wmSelection);
@@ -37,9 +37,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT2_applyWebMercator)
 	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 4353.239558363628);
 }
 
-std::string wgs84Selection = "wgs84";
 BOOST_AUTO_TEST_CASE(PROJ_UT3_applyWgs84)
 {
+	std::string wgs84Selection = "wgs84";
 	upperRight.applyProjection(wgs84Selection);
 	lowerRight.applyProjection(wgs84Selection);
 	upperLeft.applyProjection(wgs84Selection);
@@ -55,9 +55,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT3_applyWgs84)
 	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 580);
 }
 
-std::string gsSelection = "gallStereographic";
 BOOST_AUTO_TEST_CASE(PROJ_UT4_applyGallStereographic)
 {
+	std::string gsSelection = "gallStereographic";
 	upperRight.applyProjection(gsSelection);
 	lowerRight.applyProjection(gsSelection);
 	upperLeft.applyProjection(gsSelection);
@@ -73,9 +73,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT4_applyGallStereographic)
 	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 707.27922061357845);
 }
 
-std::string wtSelection = "winkelTripel";
 BOOST_AUTO_TEST_CASE(PROJ_UT5_applyWinkelTripel)
 {
+	std::string wtSelection = "winkelTripel";
 	upperRight.applyProjection(wtSelection);
 	lowerRight.applyProjection(wtSelection);
 	upperLeft.applyProjection(wtSelection);
@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT5_applyWinkelTripel)
 	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 682.74333882308133);
 }
 
-std::string gpSelection = "gallPeters";
 BOOST_AUTO_TEST_CASE(PROJ_UT6_applyGallPeters)
 {
+	std::string gpSelection = "gallPeters";
 	upperRight.applyProjection(gpSelection);
 	lowerRight.applyProjection(gpSelection);
 	upperLeft.applyProjection(gpSelection);
@@ -109,9 +109,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT6_applyGallPeters)
 	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 760);
 }
 
-std::string siSelection = "sinusoidal";
 BOOST_AUTO_TEST_CASE(PROJ_UT7_applySinusoidal)
 {
+	std::string siSelection = "sinusoidal";
 	upperRight.applyProjection(siSelection);
 	lowerRight.applyProjection(siSelection);
 	upperLeft.applyProjection(siSelection);
@@ -127,9 +127,9 @@ BOOST_AUTO_TEST_CASE(PROJ_UT7_applySinusoidal)
 	BOOST_CHECK_EQUAL((lowerLeft.projectedY), 682.74333882308133);
 }
 
-std::string eeSelection = "equalEarth";
 BOOST_AUTO_TEST_CASE(PROJ_UT8_applyEqualEarth)
 {
+	std::string eeSelection = "equalEarth";
 	upperRight.applyProjection(eeSelection);
 	lowerRight.applyProjection(eeSelection);
 	upperLeft.applyProjection(eeSelection);
