@@ -63,43 +63,43 @@ BOOST_AUTO_TEST_CASE(GEO_UT1_Constructor)
 	BOOST_CHECK_NO_THROW(GeoJsonConverter());
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT2)
+BOOST_AUTO_TEST_CASE(GEO_UT2_generateWebMercator)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "webMercator", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT3)
+BOOST_AUTO_TEST_CASE(GEO_UT3_generateWGS84)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "wgs84", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT4)
+BOOST_AUTO_TEST_CASE(GEO_UT4_generateGallStereographic)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "gallStereographic", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT5)
+BOOST_AUTO_TEST_CASE(GEO_UT5_generateWinkelTripel)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "winkelTripel", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT6)
+BOOST_AUTO_TEST_CASE(GEO_UT6_generateGallPeters)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "gallPeters", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT7)
+BOOST_AUTO_TEST_CASE(GEO_UT7_generateSinusoidal)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "sinusoidal", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT8)
+BOOST_AUTO_TEST_CASE(GEO_UT8_generateEqualEarth)
 {
 	GeoJsonConverter converter;
 	svgTest(converter, "equalEarth", "worldMap");
