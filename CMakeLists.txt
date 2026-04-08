@@ -17,7 +17,7 @@ FetchContent_MakeAvailable(json)
 
 find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
 
-find_package(Boost REQUIRED COMPONENTS unit_test_framework)
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 qt_add_executable(MapProjectionVisualiser WIN32 MACOSX_BUNDLE
     "src/main.cpp"
@@ -40,7 +40,7 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
 )
 
 add_executable (MapProjectionVisualiserTest
-    "src/tests/unit/projectionsTest.cpp"
+    "src/tests/unit/ProjectionsTests.cpp"
     "src/backend/GeoJsonConverter.cpp" 
     "src/backend/GeoJsonConverter.h"
     "src/backend/Projections.cpp"
@@ -57,13 +57,13 @@ target_link_libraries(MapProjectionVisualiserTest PRIVATE
 
 # Resources:
 set(qml_resource_files
-    "src/gui/qml/MainView.qml"
-    "src/gui/qml/OptionsButtons.qml"
-    "src/gui/qml/ProjectionsPanel.qml"
-    "src/gui/qml/InfoPanel.qml"
-    "src/gui/qml/InfoButton.qml"
-    "src/gui/qml/InfoContent.qml"
-    "src/gui/qml/MapPanel.qml"
+    "src/gui/MainView.qml"
+    "src/gui/OptionsButtons.qml"
+    "src/gui/ProjectionsPanel.qml"
+    "src/gui/InfoPanel.qml"
+    "src/gui/InfoButton.qml"
+    "src/gui/InfoContent.qml"
+    "src/gui/MapPanel.qml"
 )
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/pangaea.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
