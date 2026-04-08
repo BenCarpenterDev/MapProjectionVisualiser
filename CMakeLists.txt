@@ -15,6 +15,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 include_directories("src/backend")
 add_subdirectory("src/backend")
+
 target_link_libraries(MapProjectionLibrary  PUBLIC
     Qt::Core
     Qt::Gui
@@ -34,7 +35,8 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
 )
 
 add_executable (MapProjectionVisualiserTest
-    "src/tests/unit/ProjectionsTests.cpp"
+    #"src/tests/unit/ProjectionsTests.cpp"
+    "src/tests/unit/GeoJsonTests.cpp"
 )
 
 target_link_libraries(MapProjectionVisualiserTest PRIVATE

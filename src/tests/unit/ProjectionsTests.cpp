@@ -11,6 +11,7 @@ Projections lowerLeft(-180, -90);
 
 BOOST_AUTO_TEST_CASE(PROJ_UT1_Constructor)
 {
+	BOOST_CHECK_NO_THROW(Projections());
 	int xTestNormal = 23;
 	int yTestNormal = 40;
 	Projections proj(xTestNormal, yTestNormal);
