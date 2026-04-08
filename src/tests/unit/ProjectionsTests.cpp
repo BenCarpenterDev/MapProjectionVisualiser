@@ -1,6 +1,6 @@
 #define BOOST_TEST_MODULE MapVisualiserTests
 #include <boost/test/included/unit_test.hpp>
-#include "../../backend/Projections.h"
+#include "Projections.h"
 
 BOOST_AUTO_TEST_SUITE(ProjectionsTestSuite)
 

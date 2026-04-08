@@ -8,51 +8,38 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 include(FetchContent)
-FetchContent_Declare(
-    json 
-    URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
-    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
-)
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(json)
-
 find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
-
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+
+include_directories("src/backend")
+add_subdirectory("src/backend")
+target_link_libraries(MapProjectionLibrary  PUBLIC
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    nlohmann_json::nlohmann_json
+)
 
 qt_add_executable(MapProjectionVisualiser WIN32 MACOSX_BUNDLE
     "src/main.cpp"
-    "src/backend/GeoJsonConverter.cpp" 
-    "src/backend/GeoJsonConverter.h"
-    "src/backend/Projections.cpp"
-    "src/backend/Projections.h"
 )
-
 set_target_properties(MapProjectionVisualiser PROPERTIES
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE TRUE
 )
-
 target_link_libraries(MapProjectionVisualiser  PUBLIC
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    nlohmann_json::nlohmann_json
+    MapProjectionLibrary
 )
 
 add_executable (MapProjectionVisualiserTest
     "src/tests/unit/ProjectionsTests.cpp"
-    "src/backend/GeoJsonConverter.cpp" 
-    "src/backend/GeoJsonConverter.h"
-    "src/backend/Projections.cpp"
-    "src/backend/Projections.h"
 )
 
 target_link_libraries(MapProjectionVisualiserTest PRIVATE
+    MapProjectionLibrary
     Boost::unit_test_framework
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    nlohmann_json::nlohmann_json
 )
 
 # Resources:
