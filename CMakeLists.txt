@@ -44,6 +44,10 @@ target_link_libraries(MapProjectionVisualiserTest PRIVATE
     Boost::unit_test_framework
 )
 
+target_compile_definitions(MapProjectionVisualiserTest PRIVATE
+    TEST_RESOURCES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/unit/comparision"
+)
+
 # Resources:
 set(qml_resource_files
     "src/gui/MainView.qml"

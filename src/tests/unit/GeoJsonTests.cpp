@@ -34,12 +34,26 @@ void deleteGeneratedFiles() {
 	};
 }
 
-void primeTest(GeoJsonConverter& converter, const std::string& projection, const std::string& map) {
+bool fileCheck(const std::string& control, const std::string& compare) {
+	std::ifstream originalFile(control);
+	std::ifstream newFile(compare);
+
+	std::ostringstream originalString, newString;
+
+	originalString << originalFile.rdbuf();
+	newString << newFile.rdbuf();
+
+	return originalString.str() == newString.str();
+}
+
+void svgTest(GeoJsonConverter& converter, const std::string& projection, const std::string& map) {
 	deleteGeneratedFiles();
 	converter.selectProjection(QString::fromStdString(projection));
 	converter.selectMap(QString::fromStdString(map));
 	BOOST_CHECK(std::filesystem::exists("resources/" + map + "_"+projection+".svg"));
 	BOOST_CHECK(std::filesystem::exists("resources/gridMap_"+projection+".svg"));
+	fileCheck("resources/" + map + "_" + projection + ".svg", std::string(TEST_RESOURCES_DIR) + "/" + map + "_" + projection + ".svg");
+	fileCheck("resources/gridMap_" + projection + ".svg", std::string(TEST_RESOURCES_DIR) + "/gridMap_" + projection + ".svg");
 }
 
 BOOST_AUTO_TEST_SUITE(GeoJsonTestSuite)
@@ -52,43 +66,43 @@ BOOST_AUTO_TEST_CASE(GEO_UT1_Constructor)
 BOOST_AUTO_TEST_CASE(GEO_UT2)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "webMercator", "worldMap");
+	svgTest(converter, "webMercator", "worldMap");
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT3)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "wgs84", "worldMap");
+	svgTest(converter, "wgs84", "worldMap");
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT4)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "gallStereographic", "worldMap");
+	svgTest(converter, "gallStereographic", "worldMap");
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT5)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "winkelTripel", "worldMap");
+	svgTest(converter, "winkelTripel", "worldMap");
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT6)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "gallPeters", "worldMap");
+	svgTest(converter, "gallPeters", "worldMap");
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT7)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "sinusoidal", "worldMap");
+	svgTest(converter, "sinusoidal", "worldMap");
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT8)
 {
 	GeoJsonConverter converter;
-	primeTest(converter, "equalEarth", "worldMap");
+	svgTest(converter, "equalEarth", "worldMap");
 }
 
 BOOST_AUTO_TEST_SUITE_END()
