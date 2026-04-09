@@ -58,6 +58,18 @@ private:
     */
     bool checkFileExists(const std::string path);
 
+    /**
+	* @brief Formats the content of the JSON file into SVG format using the specified projection and styling.
+    *
+	* This method iterates through each feature in the JSON file, applies the chosen projection to the coordinates, 
+    * and writes the corresponding SVG elements to the provided string stream. The fill and stroke colours for the SVG elements can be specified as parameters.
+    *
+	* @param svgStream The string stream to which the SVG content will be written.
+	* @param jsonFile The JSON object containing the vector map data to be converted.
+	* @param fillColour The fill colour to be applied to the SVG elements.
+	* @param strokeColour The stroke colour to be applied to the SVG elements.
+    *
+    */
     void svgContentFormat(std::ostringstream& svgStream, nlohmann::json jsonFile, std::string fillColour, std::string strokeColour);
 
     /**
@@ -65,6 +77,8 @@ private:
     *
     * This method read through every object within the JSON file, applies a projection algorithm to the coordinates and writes to an SVG file.
     * If the SVG file already exists, it will not be created again and the existing file will be used instead.
+    *
+    * @param selectedMap Determines which map is read and converted.
     *
     */
     void convertFile(std::string selectedMap);
