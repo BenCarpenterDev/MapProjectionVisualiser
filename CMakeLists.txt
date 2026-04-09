@@ -7,12 +7,15 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+# Using FetchContent to include Nlohmann Json
 include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(json)
+# Finding Qt and Boost
 find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
+# Using backend scripts as a library to be linked to the visualiser and tests
 include_directories("src/backend")
 add_subdirectory("src/backend")
 
@@ -23,6 +26,7 @@ target_link_libraries(MapProjectionLibrary  PUBLIC
     nlohmann_json::nlohmann_json
 )
 
+# Main Executable
 qt_add_executable(MapProjectionVisualiser WIN32 MACOSX_BUNDLE
     "src/main.cpp"
 )
@@ -34,6 +38,7 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
     MapProjectionLibrary
 )
 
+# Unit Tests Executable
 add_executable (MapProjectionVisualiserTest
     "src/tests/unit/MainTests.cpp"
     "src/tests/unit/ProjectionsTests.cpp"
@@ -60,6 +65,7 @@ set(qml_resource_files
     "src/gui/MapPanel.qml"
 )
 
+# Copying required resources to the build directory for both the visualiser and tests
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/pangaea.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/shape1.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/shape2.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
