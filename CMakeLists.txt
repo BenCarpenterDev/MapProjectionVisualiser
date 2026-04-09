@@ -17,7 +17,7 @@ include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
 FetchContent_MakeAvailable(json)
 # Finding Qt and Boost
-find_package(Qt6 COMPONENTS Core Gui Qml REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui Qml QuickTest REQUIRED)
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 # Using backend scripts as a library to be linked to the visualiser and tests
@@ -43,23 +43,44 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
     MapProjectionLibrary
 )
 
-# Unit Tests Executable
-add_executable (MapProjectionVisualiserTest
-    "src/tests/boost/MainTests.cpp"
+# C++ Unit Tests Executable
+add_executable (LibraryTest
+    "src/tests/boost/mainBoostTests.cpp"
     "src/tests/boost/ProjectionsTests.cpp"
     "src/tests/boost/GeoJsonTests.cpp"
 )
 
-target_link_libraries(MapProjectionVisualiserTest PRIVATE
+target_link_libraries(LibraryTest PRIVATE
     MapProjectionLibrary
     Boost::unit_test_framework
 )
 
-target_compile_definitions(MapProjectionVisualiserTest PRIVATE
+target_compile_definitions(LibraryTest PRIVATE
     TEST_RESOURCES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/boost/comparision"
 )
 
-set_target_properties(MapProjectionVisualiserTest PROPERTIES
+set_target_properties(LibraryTest PROPERTIES
+    CXX_CLANG_TIDY ""
+)
+
+# QML Unit Tests Executable
+add_executable(UserInterfaceTest 
+    "src/tests/qtquick/mainQuickTests.cpp"
+)
+
+target_link_libraries(UserInterfaceTest PRIVATE
+    MapProjectionLibrary
+    Qt::Core
+    Qt::Gui
+    Qt::Qml
+    Qt::QuickTest
+)
+
+target_compile_definitions(UserInterfaceTest PRIVATE
+    -DQUICK_TEST_SOURCE_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/qtquick"
+)
+
+set_target_properties(UserInterfaceTest PROPERTIES
     CXX_CLANG_TIDY ""
 )
 
@@ -85,6 +106,13 @@ file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_lake
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_rivers_lake_centerlines.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
 
 qt6_add_resources(MapProjectionVisualiser  "qml"
+    PREFIX
+        "/"
+    FILES
+        ${qml_resource_files}
+)
+
+qt6_add_resources(UserInterfaceTest   "qml"
     PREFIX
         "/"
     FILES
