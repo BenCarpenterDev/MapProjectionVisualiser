@@ -12,8 +12,14 @@ Will need to be installed and environment variables set.
 * JSON: https://github.com/nlohmann/json
 Included with fetchcontent within the cmakelist. No action required.
 
+*Doygen: https://www.doxygen.nl/index.html
+To generate documentation.
+
 ### Resources Used
-* World Map: https://github.com/nvkelso/natural-earth-vector
+* World Map: https://www.naturalearthdata.com/
+Source: https://github.com/nvkelso/natural-earth-vector
 Included as a git submodule. "git submodule update" will need to be used.
 * Pangea Map: https://services2.arcgis.com/xsh7pVZv42relbEf/ArcGIS/rest/services/Pangea/FeatureServer/4, https://developers.arcgis.com/rest/
 Manually downloaded in this repository. No action required.
+* Mars Map: https://www.openplanetary.org/opm/basemaps
+Source: https://openplanetary.carto.com/u/opmbuilder/tables/opm_499_mars_albedo_tes_7classes/public

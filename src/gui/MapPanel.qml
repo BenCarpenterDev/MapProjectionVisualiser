@@ -10,7 +10,7 @@ Rectangle {
     anchors.bottomMargin: 30
     radius: 8
     width: 140
-    height: 140
+    height: 160
     color: Qt.rgba(0, 0, 0, 0.21)
 
     property bool gridEnabled: gridToggle.checked
@@ -22,6 +22,7 @@ Rectangle {
             mapOne.state = "Unselected"
             mapTwo.state = "Unselected"
             mapThree.state = "Unselected"
+            mapFour.state = "Unselected"
         }
 
         OptionsButtons {
@@ -29,15 +30,17 @@ Rectangle {
             text: "World Map"
             onClicked: {
                 converter.selectMap("worldMap")
+                mainWindow.backgroundColour = "#9FCBF9"
                 parent.resetColours()
                 this.state = "Selected"
             }
         }
         OptionsButtons {
             id: mapTwo
-            text: "Pangaea Map"
+            text: "Pangaea"
             onClicked: {
                 converter.selectMap("preHistoricMap")
+                mainWindow.backgroundColour = "#9FCBF9"
                 parent.resetColours()
                 this.state = "Selected"
             }
@@ -47,6 +50,17 @@ Rectangle {
             text: "Shapes"
             onClicked: {
                 converter.selectMap("shapesMap")
+                mainWindow.backgroundColour = "#9FCBF9"
+                parent.resetColours()
+                this.state = "Selected"
+            }
+        }
+        OptionsButtons {
+            id: mapFour
+            text: "Mars TES Albedo"
+            onClicked: {
+                converter.selectMap("marsMap")
+                mainWindow.backgroundColour = "#8c7bbf"
                 parent.resetColours()
                 this.state = "Selected"
             }

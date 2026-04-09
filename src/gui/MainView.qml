@@ -12,12 +12,13 @@ Window {
     height: 1080
     visible: true
     visibility: Window.Maximized
-    color: "#9FCBF9"
+    property string backgroundColour: "#9FCBF9"
+    color: backgroundColour
 
     GeoJsonConverter {
         id: converter
 
-       Component.onCompleted: {
+        Component.onCompleted: {
             converter.selectMap("worldMap")
             converter.selectProjection("webMercator")
         }
@@ -39,7 +40,7 @@ Window {
         id: worldMapContainer
         width: parent.width
         height: parent.height
-        color: "#9FCBF9"
+        color: backgroundColour
 
         x: (parent.width  - width)  / 2
         y: (parent.height - height) / 2

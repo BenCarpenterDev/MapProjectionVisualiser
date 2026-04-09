@@ -7,6 +7,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+# Clang Tidy
+set(CMAKE_CXX_CLANG_TIDY
+    clang-tidy;
+    -header-filter='src/backend/.*';)
+
 # Using FetchContent to include Nlohmann Json
 include(FetchContent)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz DOWNLOAD_EXTRACT_TIMESTAMP TRUE)
@@ -66,11 +71,7 @@ set(qml_resource_files
 )
 
 # Copying required resources to the build directory for both the visualiser and tests
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/pangaea.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/shape1.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/shape2.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/shape3.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/shape4.json  DESTINATION ${PROJECT_BINARY_DIR}/resources )
+file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/  DESTINATION ${PROJECT_BINARY_DIR}/resources )
 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_land.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
 file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_admin_0_boundary_lines_land.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 

@@ -123,6 +123,10 @@ void GeoJsonConverter::convertFile(std::string selectedMap)
             svgContentFormat(svgStream, readFile("resources/shape3.json"), "green", "#333");
             svgContentFormat(svgStream, readFile("resources/shape4.json"), "yellow", "#333");
 		}
+        else if (selectedMap == "marsMap")
+        {
+            svgContentFormat(svgStream, readFile("resources/opm_499_mars_albedo_tes_7classes.geojson"), "#8c7bbf", "#ffffff");
+        }
         svgStream << "</svg>\n";
         std::ofstream svgFile(fileName);
         svgFile << svgStream.str();
