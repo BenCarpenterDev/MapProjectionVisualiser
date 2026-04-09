@@ -64,7 +64,7 @@ BOOST_AUTO_TEST_SUITE(GeoJsonTestSuite)
 
 BOOST_AUTO_TEST_CASE(GEO_UT1_Constructor)
 {
-	BOOST_CHECK_NO_THROW(GeoJsonConverter());
+	BOOST_CHECK_NO_THROW(GeoJsonConverter{});
 }
 
 BOOST_AUTO_TEST_CASE(GEO_UT2_generateWebMercator)

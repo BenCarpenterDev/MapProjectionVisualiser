@@ -45,9 +45,9 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
 
 # Unit Tests Executable
 add_executable (MapProjectionVisualiserTest
-    "src/tests/unit/MainTests.cpp"
-    "src/tests/unit/ProjectionsTests.cpp"
-    "src/tests/unit/GeoJsonTests.cpp"
+    "src/tests/boost/MainTests.cpp"
+    "src/tests/boost/ProjectionsTests.cpp"
+    "src/tests/boost/GeoJsonTests.cpp"
 )
 
 target_link_libraries(MapProjectionVisualiserTest PRIVATE
@@ -56,7 +56,11 @@ target_link_libraries(MapProjectionVisualiserTest PRIVATE
 )
 
 target_compile_definitions(MapProjectionVisualiserTest PRIVATE
-    TEST_RESOURCES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/unit/comparision"
+    TEST_RESOURCES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/src/tests/boost/comparision"
+)
+
+set_target_properties(MapProjectionVisualiserTest PROPERTIES
+    CXX_CLANG_TIDY ""
 )
 
 # Resources:

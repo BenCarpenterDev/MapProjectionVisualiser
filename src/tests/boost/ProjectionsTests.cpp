@@ -1,4 +1,3 @@
-#define BOOST_TEST_LOG_LEVEL message
 #include <boost/test/unit_test.hpp>
 
 #include "Projections.h"
