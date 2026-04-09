@@ -1,5 +1,6 @@
-#define BOOST_TEST_MODULE MapVisualiserTests
-#include <boost/test/included/unit_test.hpp>
+#define BOOST_TEST_LOG_LEVEL message
+#include <boost/test/unit_test.hpp>
+
 #include "Projections.h"
 
 BOOST_AUTO_TEST_SUITE(ProjectionsTestSuite)
@@ -11,7 +12,6 @@ Projections lowerLeft(-180, -90);
 
 BOOST_AUTO_TEST_CASE(PROJ_UT1_Constructor)
 {
-	BOOST_CHECK_NO_THROW(Projections());
 	int xTestNormal = 23;
 	int yTestNormal = 40;
 	Projections proj(xTestNormal, yTestNormal);

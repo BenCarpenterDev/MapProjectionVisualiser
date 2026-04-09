@@ -35,7 +35,8 @@ target_link_libraries(MapProjectionVisualiser  PUBLIC
 )
 
 add_executable (MapProjectionVisualiserTest
-    #"src/tests/unit/ProjectionsTests.cpp"
+    "src/tests/unit/MainTests.cpp"
+    "src/tests/unit/ProjectionsTests.cpp"
     "src/tests/unit/GeoJsonTests.cpp"
 )
 

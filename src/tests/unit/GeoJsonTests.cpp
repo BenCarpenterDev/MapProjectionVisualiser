@@ -1,11 +1,11 @@
-#define BOOST_TEST_MODULE MapVisualiserTests
-#include <boost/test/included/unit_test.hpp>
+#include <boost/test/unit_test.hpp>
 
 #include "GeoJsonConverter.h"
 
 #include <filesystem>
 #include <list>
 #include <string>
+#include <fstream>
 
 void deleteGeneratedFiles() {
 	std::list<std::string> projections = {
@@ -34,9 +34,13 @@ void deleteGeneratedFiles() {
 	};
 }
 
-bool fileCheck(const std::string& control, const std::string& compare) {
-	std::ifstream originalFile(control);
-	std::ifstream newFile(compare);
+bool fileCheck(const std::string& map, const std::string& projection) {
+	std::string originalPath = "resources/" + map + "_" + projection + ".svg";
+	std::string generatedPath = std::string(TEST_RESOURCES_DIR) + "/" + map + "_" + projection + ".svg";
+
+	std::ifstream originalFile(originalPath);
+
+	std::ifstream newFile(generatedPath);
 
 	std::ostringstream originalString, newString;
 
@@ -52,8 +56,8 @@ void svgTest(GeoJsonConverter& converter, const std::string& projection, const s
 	converter.selectMap(QString::fromStdString(map));
 	BOOST_CHECK(std::filesystem::exists("resources/" + map + "_"+projection+".svg"));
 	BOOST_CHECK(std::filesystem::exists("resources/gridMap_"+projection+".svg"));
-	fileCheck("resources/" + map + "_" + projection + ".svg", std::string(TEST_RESOURCES_DIR) + "/" + map + "_" + projection + ".svg");
-	fileCheck("resources/gridMap_" + projection + ".svg", std::string(TEST_RESOURCES_DIR) + "/gridMap_" + projection + ".svg");
+	BOOST_CHECK(fileCheck(map, projection));
+	BOOST_CHECK(fileCheck("gridMap", projection));
 }
 
 BOOST_AUTO_TEST_SUITE(GeoJsonTestSuite)
