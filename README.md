@@ -16,10 +16,20 @@ Included with fetchcontent within the cmakelist. No action required.
 To generate documentation.
 
 ### Resources Used
-* World Map: https://www.naturalearthdata.com/
-Source: https://github.com/nvkelso/natural-earth-vector
-Included as a git submodule. "git submodule update" will need to be used.
-* Pangea Map: https://services2.arcgis.com/xsh7pVZv42relbEf/ArcGIS/rest/services/Pangea/FeatureServer/4, https://developers.arcgis.com/rest/
-Manually downloaded in this repository. No action required.
-* Mars Map: https://www.openplanetary.org/opm/basemaps
-Source: https://openplanetary.carto.com/u/opmbuilder/tables/opm_499_mars_albedo_tes_7classes/public
+* **Natural Earth World Map** <br/>
+Included as a git submodule. "git submodule update" will need to be used.<br/>
+Link: https://www.naturalearthdata.com/<br/>
+Source: https://github.com/nvkelso/natural-earth-vector<br/>
+License: Public Domain<br/>
+
+* **Pangea** <br/>
+Manually downloaded in this repository. No action required.<br/>
+Link: https://developers.arcgis.com/rest/<br/>
+Source: https://services2.arcgis.com/xsh7pVZv42relbEf/ArcGIS/rest/services/Pangea/FeatureServer/4<br/>
+License: No license described in dataset or website<br/>
+
+* **Mars** <br/>
+Manually downloaded in this repository. No action required.<br/>
+Link: https://www.openplanetary.org/opm/basemaps<br/>
+Source: https://openplanetary.carto.com/u/opmbuilder/tables/opm_499_mars_albedo_tes_7classes/public<br/>
+License: No license described in dataset or website<br/>
