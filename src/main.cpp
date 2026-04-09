@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include "backend/GeoJsonConverter.h"
+#include "GeoJsonConverter.h"
 
 int main(int argc, char *argv[])
 {

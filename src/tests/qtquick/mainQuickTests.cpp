@@ -2,6 +2,9 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QGuiApplication>
+#include <QQmlApplicationEngine>
+
+#include "GeoJsonConverter.h"
 
 class Setup : public QObject
 {
@@ -11,9 +14,14 @@ public:
     Setup() {}
 
 public slots:
+
     void applicationAvailable()
     {
         // Initialization that only requires the QGuiApplication object to be available
+        qmlRegisterType<GeoJsonConverter>("GeoJsonConverter", 1, 0, "GeoJsonConverter");
+        QQmlApplicationEngine engine;
+        engine.load(QUrl(QStringLiteral("qrc:/src/gui/MainView.qml")));
+
     }
 
     void qmlEngineAvailable(QQmlEngine* engine)

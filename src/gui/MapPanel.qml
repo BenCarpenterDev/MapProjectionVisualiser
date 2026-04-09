@@ -60,7 +60,7 @@ Rectangle {
             text: "Mars TES Albedo"
             onClicked: {
                 converter.selectMap("marsMap")
-                mainWindow.backgroundColour = "#8c7bbf"
+                mainWindow.backgroundColour = "#09264a"
                 parent.resetColours()
                 this.state = "Selected"
             }
