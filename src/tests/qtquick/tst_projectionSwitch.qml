@@ -3,7 +3,7 @@ import QtTest 1.0
 import "../../gui"
 
 TestCase {
-    name: "GUI_IT4_projectionSwitch"
+    name: "GUI_IT3_projectionSwitch"
     when: windowShown
 
     MainView{id: mainWindow}

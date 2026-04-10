@@ -19,6 +19,7 @@ Rectangle {
     property alias mapTwo: mapTwo
     property alias mapThree: mapThree
     property alias mapFour: mapFour
+    property alias gridToggle: gridToggle
 
     ColumnLayout {
         anchors.centerIn: parent

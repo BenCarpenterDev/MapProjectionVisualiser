@@ -72,6 +72,6 @@ public slots:
     }
 };
 
-QUICK_TEST_MAIN_WITH_SETUP(mytest, Setup)
+QUICK_TEST_MAIN_WITH_SETUP(MapProjectionGUITests, Setup)
 
 #include "mainQuickTests.moc"

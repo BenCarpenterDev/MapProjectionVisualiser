@@ -3,7 +3,7 @@ import QtTest 1.0
 import "../../gui"
 
 TestCase {
-    name: "GUI_IT5_mapSwitch"
+    name: "GUI_IT2_mapSwitch"
     when: windowShown
 
     MainView{id: mainWindow}
@@ -35,6 +35,15 @@ TestCase {
         mouseClick(mainWindow.mapPanel.mapFour)
         wait(100)
         compare(fileName(mainWindow.worldMap.source.toString()), "marsMap_webMercator.svg", "Selected map should be Mars map")
+    }
+
+    function test_gridToggle() {        
+        mouseClick(mainWindow.mapPanel.gridToggle)
+        wait(100)
+        verify(mainWindow.mapPanel.gridEnabled, "Grid should be enabled")
+        mouseClick(mainWindow.mapPanel.gridToggle)
+        wait(100)
+        verify(!mainWindow.mapPanel.gridEnabled, "Grid should be disabled")
     }
 
 }
