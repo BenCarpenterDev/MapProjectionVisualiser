@@ -96,14 +96,7 @@ set(qml_resource_files
 )
 
 # Copying required resources to the build directory for both the visualiser and tests
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/additional/  DESTINATION ${PROJECT_BINARY_DIR}/resources )
-
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_land.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_admin_0_boundary_lines_land.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_graticules_10.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_wgs84_bounding_box.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_lakes.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
-file(COPY ${PROJECT_SOURCE_DIR}/src/resources/natural-earth/geojson/ne_110m_rivers_lake_centerlines.geojson  DESTINATION ${PROJECT_BINARY_DIR}/resources ) 
+file(COPY ${PROJECT_SOURCE_DIR}/src/resources/  DESTINATION ${PROJECT_BINARY_DIR}/resources )
 
 qt6_add_resources(MapProjectionVisualiser  "qml"
     PREFIX

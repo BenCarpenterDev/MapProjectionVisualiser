@@ -1,3 +1,0 @@
-[submodule "src/resources/natural-earth"]
-	path = src/resources/natural-earth
-	url = https://github.com/nvkelso/natural-earth-vector.git

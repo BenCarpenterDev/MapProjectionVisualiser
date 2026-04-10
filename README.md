@@ -17,7 +17,7 @@ To generate documentation.
 
 ### Resources Used
 * **Natural Earth World Map** <br/>
-Included as a git submodule. "git submodule update" will need to be used.<br/>
+Manually downloaded in this repository. No action required.<br/>
 Link: https://www.naturalearthdata.com/<br/>
 Source: https://github.com/nvkelso/natural-earth-vector<br/>
 License: Public Domain<br/>
