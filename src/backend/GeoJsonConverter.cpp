@@ -1,4 +1,6 @@
 #include "GeoJsonConverter.h"
+#include "GeoJsonConverter.h"
+#include "GeoJsonConverter.h"
 #include "Projections.h"
 
 #include <nlohmann/json.hpp>
@@ -13,6 +15,12 @@
 
 GeoJsonConverter::GeoJsonConverter(QObject *parent) : QObject(parent)
 {
+    if (currentMap.empty()) {
+        currentMap = "worldMap";
+    }
+    if (currentProjection.empty()) {
+        currentProjection = "webMercator";
+    }
 }
 
 nlohmann::json GeoJsonConverter::readFile(const std::string path)
