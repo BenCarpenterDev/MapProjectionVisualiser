@@ -13,6 +13,14 @@ Rectangle {
     height: 240
     color: Qt.rgba(0, 0, 0, 0.21)
 
+    property alias projOne: projOne
+    property alias projTwo: projTwo
+    property alias projThree: projThree
+    property alias projFour: projFour
+    property alias projFive: projFive
+    property alias projSix: projSix
+    property alias projSeven: projSeven
+
     ColumnLayout {
         anchors.centerIn: parent
 

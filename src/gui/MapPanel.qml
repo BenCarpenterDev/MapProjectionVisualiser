@@ -14,6 +14,11 @@ Rectangle {
     color: Qt.rgba(0, 0, 0, 0.21)
 
     property bool gridEnabled: gridToggle.checked
+    
+    property alias mapOne: mapOne
+    property alias mapTwo: mapTwo
+    property alias mapThree: mapThree
+    property alias mapFour: mapFour
 
     ColumnLayout {
         anchors.centerIn: parent

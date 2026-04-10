@@ -15,6 +15,18 @@ Window {
     property string backgroundColour: "#9FCBF9"
     color: backgroundColour
 
+    property alias converter: converter
+    property alias worldMapContainer: worldMapContainer
+    property alias worldMap: worldMap
+    property alias gridMap: gridMap
+    property alias mapScale: mapScale
+    property alias pinchArea: pinchArea
+    property alias dragArea: dragArea
+    property alias projectionsPanel: projectionsPanel
+    property alias mapPanel: mapPanel
+    property alias infoPanel: infoPanel
+    property alias infoButton: infoButton
+
     GeoJsonConverter {
         id: converter
 
@@ -140,7 +152,9 @@ Window {
         }
     }
 
-    ProjectionsPanel{}
+    ProjectionsPanel{
+        id: projectionsPanel
+    }
 
     MapPanel{
         id: mapPanel
@@ -151,5 +165,7 @@ Window {
         opacity: 0.0
     }
 
-    InfoButton{}
+    InfoButton{
+        id: infoButton
+    }
 }

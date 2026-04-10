@@ -4,6 +4,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
+#include <filesystem>
+
 #include "GeoJsonConverter.h"
 
 class Setup : public QObject
@@ -12,6 +14,35 @@ class Setup : public QObject
 
 public:
     Setup() {}
+
+private:
+	void deleteGeneratedFiles() {
+		std::list<std::string> projections = {
+			"wgs84",
+			"webMercator",
+			"gallStereographic",
+			"winkelTripel",
+			"gallPeters",
+			"sinusoidal",
+			"equalEarth"
+		};
+
+		std::list<std::string> maps = {
+			"worldMap",
+			"gridMap",
+			"preHistoricMap",
+			"shapesMap",
+			"marsMap"
+		};
+		for (std::string projection : projections) {
+			for (std::string map : maps) {
+				std::string filePath = "resources/" + map + "_" + projection + ".svg";
+				if (std::filesystem::exists(filePath)) {
+					std::filesystem::remove(filePath);
+				}
+			}
+		};
+	}
 
 public slots:
 
@@ -30,9 +61,14 @@ public slots:
         engine->rootContext()->setContextProperty("myContextProperty", QVariant(true));
     }
 
+	void initTestCase()
+	{
+		deleteGeneratedFiles();
+	}
+
     void cleanupTestCase()
     {
-        // Implement custom resource cleanup
+		deleteGeneratedFiles();
     }
 };
 
