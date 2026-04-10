@@ -42,6 +42,7 @@ struct GeoJsonTestFixture {
 	GeoJsonTestFixture() {
 		converter.selectProjection("webMercator");
 		converter.selectMap("worldMap");
+		deleteGeneratedFiles();
 	};
 	~GeoJsonTestFixture() {
 		deleteGeneratedFiles();
@@ -68,9 +69,7 @@ bool fileCheck(const std::string& map, const std::string& projection) {
 // Helper function to test if the SVG files are generated correctly and match the expected content
 void svgCheck(const std::string& projection, const std::string& map) {
 	BOOST_CHECK(std::filesystem::exists("resources/" + map + "_"+projection+".svg"));
-	BOOST_CHECK(std::filesystem::exists("resources/gridMap_"+projection+".svg"));
 	BOOST_CHECK(fileCheck(map, projection));
-	BOOST_CHECK(fileCheck("gridMap", projection));
 }
 
 BOOST_AUTO_TEST_SUITE(GeoJsonTestSuite)
@@ -122,17 +121,44 @@ BOOST_FIXTURE_TEST_CASE(GEO_UT8_generateEqualEarth, GeoJsonTestFixture)
 	svgCheck("equalEarth", "worldMap");
 }
 
-BOOST_AUTO_TEST_CASE(GEO_UT9_selectWorldMap)
+BOOST_FIXTURE_TEST_CASE(GEO_UT9_selectWorldMap, GeoJsonTestFixture)
 {
-	deleteGeneratedFiles();
 	std::string projection = "webMercator";
-	std::string firstMap = "prehistoricMap";
 	std::string selectedMap = "worldMap";
-	GeoJsonConverter converter;
-	svgCheck(projection, firstMap);
+
 	converter.selectMap(QString::fromStdString(selectedMap));
 
-	BOOST_CHECK(std::filesystem::exists("resources/" + selectedMap + "_" + projection + ".svg"));
+	svgCheck(projection, selectedMap);
+}
+
+BOOST_FIXTURE_TEST_CASE(GEO_UT10_selectPangea, GeoJsonTestFixture)
+{
+	std::string projection = "webMercator";
+	std::string selectedMap = "preHistoricMap";
+
+	converter.selectMap(QString::fromStdString(selectedMap));
+
+	svgCheck(projection, selectedMap);
+}
+
+BOOST_FIXTURE_TEST_CASE(GEO_UT11_selectMars, GeoJsonTestFixture)
+{
+	std::string projection = "webMercator";
+	std::string selectedMap = "marsMap";
+
+	converter.selectMap(QString::fromStdString(selectedMap));
+
+	svgCheck(projection, selectedMap);
+}
+
+BOOST_FIXTURE_TEST_CASE(GEO_UT12_selectGrid, GeoJsonTestFixture)
+{
+	std::string projection = "webMercator";
+	std::string selectedMap = "gridMap";
+
+	converter.selectMap(QString::fromStdString(selectedMap));
+
+	svgCheck(projection, selectedMap);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
