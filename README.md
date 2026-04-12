@@ -1,9 +1,9 @@
-# Map-Projection-Project
-Final Year Project 2025-2026
+# Map Projection Visualiser
+An education tool for showcasing different Map Projections. Developed for Final Year Project BSc Computer Science.
 
 ## Requirements
 ### Frameworks and Libraries
-* Qt: https://www.qt.io/, https://www.qt.io/download-qt-installer
+* Qt: https://www.qt.io/
 Will need to be installed and environment variables set.
 
 * Boost C++ (For Testing): https://www.boost.org/
@@ -12,7 +12,7 @@ Will need to be installed and environment variables set.
 * JSON: https://github.com/nlohmann/json
 Included with fetchcontent within the cmakelist. No action required.
 
-*Doygen: https://www.doxygen.nl/index.html
+* Doygen: https://www.doxygen.nl/index.html
 To generate documentation.
 
 ### Resources Used
