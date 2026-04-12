@@ -123,9 +123,7 @@ void Projections::equalEarth() {
 
 	double theta = asin((sqrt(3) / 2) * sin(lat));
 	double theta9 = pow(theta, 9);
-	double theta8 = pow(theta, 8);
 	double theta7 = pow(theta, 7);
-	double theta6 = pow(theta, 6);
 	double theta3 = pow(theta, 3);
 	double theta2 = pow(theta, 2);
 
