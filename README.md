@@ -12,7 +12,7 @@ Will need to be installed and environment variables set.
 * JSON: https://github.com/nlohmann/json
 Included with fetchcontent within the cmakelist. No action required.
 
-* Doygen: https://www.doxygen.nl/index.html
+* Doxygen: https://www.doxygen.nl/index.html
 To generate documentation.
 
 * CMake: https://cmake.org/

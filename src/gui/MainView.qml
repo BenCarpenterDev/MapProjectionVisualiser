@@ -32,6 +32,7 @@ Window {
 
         Component.onCompleted: {
             converter.selectMap("worldMap")
+            converter.selectProjection("webMercator")
         }
 
         onMapChanged: (filePath) => {
