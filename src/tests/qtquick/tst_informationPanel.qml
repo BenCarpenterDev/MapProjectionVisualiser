@@ -3,7 +3,7 @@ import QtTest 1.0
 import "../../gui"
 
 TestCase {
-    name: "GUI_IT4_informationPanel"
+    name: "Information Panel Tests"
     when: windowShown
 
     MainView{id: mainWindow}
