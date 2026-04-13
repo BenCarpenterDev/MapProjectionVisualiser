@@ -3,7 +3,7 @@ import QtTest 1.0
 import "../../gui"
 
 TestCase {
-    name: "GUI_IT3_projectionSwitch"
+    name: "Projection Tests"
     when: windowShown
 
     MainView{id: mainWindow}
@@ -14,43 +14,43 @@ TestCase {
         return nameString[nameString.length - 1]
     }
 
-    function test_wgs84() {        
+    function test_GUI_IT5_projectionWGS84() {        
         mouseClick(mainWindow.projectionsPanel.projOne)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "wgs84.svg", "Selected projection should be WGS84")
     }
 
-    function test_webMercator() {        
+    function test_GUI_IT6_projectionWebMercator() {        
         mouseClick(mainWindow.projectionsPanel.projTwo)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "webMercator.svg", "Selected projection should be Web Mercator")
     }
 
-    function test_gallStereographic() {        
+    function test_GUI_IT7_projectionGallStereographic() {        
         mouseClick(mainWindow.projectionsPanel.projThree)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "gallStereographic.svg", "Selected projection should be Gall Stereographic")
     }
 
-    function test_winkelTripel() {        
+    function test_GUI_IT8_projectionWinkelTripel() {        
         mouseClick(mainWindow.projectionsPanel.projFour)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "winkelTripel.svg", "Selected projection should be Winkel Tripel")
     }
 
-    function test_gallPeters() {        
+    function test_GUI_IT9_projectionGallPeters() {        
         mouseClick(mainWindow.projectionsPanel.projFive)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "gallPeters.svg", "Selected projection should be Gall Peters")
     }
 
-    function test_sinusoidal() {        
+    function test_GUI_IT10_projectionSinusoidal() {        
         mouseClick(mainWindow.projectionsPanel.projSix)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "sinusoidal.svg", "Selected projection should be Sinusoidal")
     }
 
-    function test_equalEarth() {        
+    function test_GUI_IT11_projectionEqualEarth() {        
         mouseClick(mainWindow.projectionsPanel.projSeven)
         wait(100)
         compare(projectionName(mainWindow.worldMap.source.toString()), "equalEarth.svg", "Selected projection should be Equal Earth")
