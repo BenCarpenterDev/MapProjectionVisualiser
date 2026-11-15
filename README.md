@@ -18,6 +18,9 @@ To generate documentation.
 * CMake: https://cmake.org/
 Build System
 
+### Fedora Packages Command
+sudo dnf install gcc-c++ make qt6-qtbase-devel qt6-qtdeclarative-devel boost-devel boost-test clang-tools-extra cmake
+
 ### Resources Used
 * **Natural Earth World Map** <br/>
 Manually downloaded in this repository. No action required.<br/>

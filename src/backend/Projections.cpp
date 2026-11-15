@@ -3,7 +3,6 @@
 
 constexpr int SVGBOX = 800;
 constexpr int R = 180;
-constexpr double M_PI = 3.14159265358979323846;
 
 Projections::Projections(double x, double y)
 {

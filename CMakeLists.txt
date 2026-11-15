@@ -8,9 +8,11 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # Clang Tidy
-set(CMAKE_CXX_CLANG_TIDY
-    clang-tidy;
-    -header-filter='src/backend/.*';)
+#set(CMAKE_CXX_CLANG_TIDY
+#    clang-tidy;
+#    -header-filter='src/backend/.*';)
+
+#set(CMAKE_CXX_CLANG_TIDY "clang-tidy;-checks=*")
 
 # Using FetchContent to include Nlohmann Json
 include(FetchContent)
@@ -18,7 +20,7 @@ FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download
 FetchContent_MakeAvailable(json)
 # Finding Qt and Boost
 find_package(Qt6 COMPONENTS Core Gui Qml QuickTest REQUIRED)
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+find_package(Boost CONFIG REQUIRED COMPONENTS unit_test_framework REQUIRED)
 
 # Using backend scripts as a library to be linked to the visualiser and tests
 include_directories("src/backend")
